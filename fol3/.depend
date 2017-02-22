@@ -1,0 +1,4 @@
+fol.lpo: fol.mod fol.sig 
+fol.lpo: fol.mod fol.sig 
+fol.lp: fol.lpo 
+fol.lp: fol.lpo 
