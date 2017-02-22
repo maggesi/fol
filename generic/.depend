@@ -1,0 +1,8 @@
+fol.lpo: fol.mod fol.sig lib.sig
+lib.lpo: lib.mod lib.sig 
+fol.lpo: fol.mod fol.sig lib.sig
+lib.lpo: lib.mod lib.sig 
+fol.lp: fol.lpo lib.lpo
+lib.lp: lib.lpo 
+fol.lp: fol.lpo lib.lpo
+lib.lp: lib.lpo 
