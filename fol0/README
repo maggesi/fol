@@ -1,0 +1,13 @@
+Elenco dei moduli:
+
+    arith3      Model for Z3
+    fol         Semantics for first order logic
+    interp      Interpretation of fol in arith3
+    main	    Tests
+
+Elementi della segnatura che le interpretazioni devono
+definire/estendere:
+
+    type domain A -> o.
+    type termval term -> A -> o.
+    type holds form -> o.

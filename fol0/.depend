@@ -1,0 +1,16 @@
+arith3.lpo: arith3.mod arith3.sig 
+main.lpo: main.mod main.sig interp.sig fol.sig arith3.sig
+interp.lpo: interp.mod interp.sig fol.sig arith3.sig
+fol.lpo: fol.mod fol.sig 
+main.lpo: main.mod main.sig interp.sig fol.sig arith3.sig
+arith3.lpo: arith3.mod arith3.sig 
+interp.lpo: interp.mod interp.sig fol.sig arith3.sig
+fol.lpo: fol.mod fol.sig 
+arith3.lp: arith3.lpo 
+main.lp: main.lpo interp.lpo fol.lpo arith3.lpo
+interp.lp: interp.lpo fol.lpo arith3.lpo
+fol.lp: fol.lpo 
+main.lp: main.lpo interp.lpo fol.lpo arith3.lpo
+arith3.lp: arith3.lpo 
+interp.lp: interp.lpo fol.lpo arith3.lpo
+fol.lp: fol.lpo 
