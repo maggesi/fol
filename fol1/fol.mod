@@ -18,10 +18,10 @@ holds (iff P Q) :- holds P, holds Q.
 holds (iff P Q) :- not(holds P), not (holds Q).
 holds (exists x \ P x) :-
   domain N,
-  pi x \ (termval x N => holds (P x)).
+  pi x \ termval x N => holds (P x).
 holds (forall x \ P x) :-
   domain N,
-  (pi x \ (termval x N => not (holds (P x)))),
+  (pi x \ termval x N => not (holds (P x))),
   !, fail.
 holds (forall x \ P x).
 
