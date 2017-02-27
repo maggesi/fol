@@ -1,27 +1,25 @@
 /* ========================================================================= */
-/* Interpretation of the language in the model as undirected graph.          */
+/* Model: simple undirected graph.                                           */
 /* ========================================================================= */
 
-module graph1interp.
-
-accumulate fol, graphmodel.
+module graphmodel.
 
 /* ------------------------------------------------------------------------- */
-/* Term evaluation.                                                          */
+/* Four edges.                                                               */
 /* ------------------------------------------------------------------------- */
 
-termval node0 0.
-termval node1 1.
-termval node2 2.
-termval node3 3.
+domain 0.
+domain 1.
+domain 2.
+domain 3.
 
 /* ------------------------------------------------------------------------- */
-/* Interpretation of predicates.                                             */
+/* Edges.                                                                    */
 /* ------------------------------------------------------------------------- */
 
-holds (edge X Y) :-
-  termval X A,
-  termval Y B,
-  (link A B; link B A).
+link 0 1.
+link 1 2.
+link 2 0.
+link 0 3.
 
 end

@@ -1,10 +1,10 @@
 /* ========================================================================= */
-/* Undirected graph: tests and examples.                                     */
+/* Directed graph: tests and examples.                                       */
 /* ========================================================================= */
 
-sig graph1test.
+sig graph0test.
 
-accum_sig graph1interp.
+accum_sig graph0interp.
 
 type test0, test1, test2, test3, test4, test5 o.
 

@@ -2,7 +2,7 @@
 /* Model: simple undirected graph.                                           */
 /* ========================================================================= */
 
-sig graph1model.
+sig graphmodel.
 
 type domain A -> o.
 type link int -> int -> o.

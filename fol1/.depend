@@ -1,28 +1,36 @@
+graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig
 arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig
 arith3model.lpo: arith3model.mod arith3model.sig 
+graphmodel.lpo: graphmodel.mod graphmodel.sig 
 arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig
 fol.lpo: fol.mod fol.sig 
-graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graph1model.sig
-graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig fol.sig graph1model.sig
-graph1model.lpo: graph1model.mod graph1model.sig 
+graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
+graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig fol.sig graphmodel.sig
+graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig fol.sig graphmodel.sig
+graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig
 arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig
 arith3model.lpo: arith3model.mod arith3model.sig 
+graphmodel.lpo: graphmodel.mod graphmodel.sig 
 arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig
 fol.lpo: fol.mod fol.sig 
-graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graph1model.sig
-graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig fol.sig graph1model.sig
-graph1model.lpo: graph1model.mod graph1model.sig 
+graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
+graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig fol.sig graphmodel.sig
+graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig fol.sig graphmodel.sig
+graph0interp.lp: graph0interp.lpo fol.lpo graphmodel.lpo
 arith3interp.lp: arith3interp.lpo fol.lpo arith3model.lpo
 arith3model.lp: arith3model.lpo 
+graphmodel.lp: graphmodel.lpo 
 arith3test.lp: arith3test.lpo arith3interp.lpo fol.lpo arith3model.lpo
 fol.lp: fol.lpo 
-graph1interp.lp: graph1interp.lpo fol.lpo graph1model.lpo
-graph1test.lp: graph1test.lpo graph1interp.lpo fol.lpo graph1model.lpo
-graph1model.lp: graph1model.lpo 
+graph1interp.lp: graph1interp.lpo fol.lpo graphmodel.lpo
+graph1test.lp: graph1test.lpo graph1interp.lpo fol.lpo graphmodel.lpo
+graph0test.lp: graph0test.lpo graph0interp.lpo fol.lpo graphmodel.lpo
+graph0interp.lp: graph0interp.lpo fol.lpo graphmodel.lpo
 arith3interp.lp: arith3interp.lpo fol.lpo arith3model.lpo
 arith3model.lp: arith3model.lpo 
+graphmodel.lp: graphmodel.lpo 
 arith3test.lp: arith3test.lpo arith3interp.lpo fol.lpo arith3model.lpo
 fol.lp: fol.lpo 
-graph1interp.lp: graph1interp.lpo fol.lpo graph1model.lpo
-graph1test.lp: graph1test.lpo graph1interp.lpo fol.lpo graph1model.lpo
-graph1model.lp: graph1model.lpo 
+graph1interp.lp: graph1interp.lpo fol.lpo graphmodel.lpo
+graph1test.lp: graph1test.lpo graph1interp.lpo fol.lpo graphmodel.lpo
+graph0test.lp: graph0test.lpo graph0interp.lpo fol.lpo graphmodel.lpo

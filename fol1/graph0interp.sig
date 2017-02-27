@@ -1,25 +1,22 @@
 /* ========================================================================= */
-/* Model: simple undirected graph.                                           */
+/* Interpretation of the language in the model as directed graph.            */
 /* ========================================================================= */
 
-module graph1model.
+sig graph0interp.
+
+accum_sig fol, graphmodel.
 
 /* ------------------------------------------------------------------------- */
-/* Four edges.                                                               */
+/* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
 
-domain 0.
-domain 1.
-domain 2.
-domain 3.
+type node0, node1, node2, node3 term.
 
 /* ------------------------------------------------------------------------- */
-/* Edges.                                                                    */
+/* Relations.                                                                */
 /* ------------------------------------------------------------------------- */
 
-link 0 1.
-link 1 2.
-link 2 0.
-link 3 0.
+type edge term -> term -> form.
+type path term -> term -> form.
 
 end

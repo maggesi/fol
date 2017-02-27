@@ -1,10 +1,10 @@
 /* ========================================================================= */
-/* Interpretation of the language of graphs in the model graph1.             */
+/* Interpretation of the language in the model as undirected graph.          */
 /* ========================================================================= */
 
 sig graph1interp.
 
-accum_sig fol, graph1model.
+accum_sig fol, graphmodel.
 
 /* ------------------------------------------------------------------------- */
 /* Term evaluation.                                                          */

@@ -1,10 +1,10 @@
 /* ========================================================================= */
-/* Undirected graph: tests and examples.                                     */
+/* Directed graph: tests and examples.                                       */
 /* ========================================================================= */
 
-module graph1test.
+module graph0test.
 
-accumulate graph1interp.
+accumulate graph0interp.
 
 test0 :- holds (edge node0 node1).
 

@@ -1,8 +1,8 @@
 /* ========================================================================= */
-/* Interpretation of the language in the model as undirected graph.          */
+/* Interpretation of the language in the model as directed graph.            */
 /* ========================================================================= */
 
-module graph1interp.
+module graph0interp.
 
 accumulate fol, graphmodel.
 
@@ -19,9 +19,6 @@ termval node3 3.
 /* Interpretation of predicates.                                             */
 /* ------------------------------------------------------------------------- */
 
-holds (edge X Y) :-
-  termval X A,
-  termval Y B,
-  (link A B; link B A).
+holds (edge X Y) :- termval X A, termval Y B, link A B.
 
 end
