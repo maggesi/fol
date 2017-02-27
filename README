@@ -1,0 +1,26 @@
+intro
+
+  Semplificazione di una semplice espressione aritmetica.  Materiale
+  relativo all'introduzione del libro.
+
+fol3
+
+  Esempio minimale: "teoria" dell'addizione per dell'aritmentica
+  modulo 3.  Implementazione di:
+    1. linguaggio (termini e formule);
+    2. modello;
+    3. interpretazione del linguaggio nel modello.
+
+fol0
+
+  Primo passo verso una versione modulare.  Stesso esempio di fol3, ma
+  organizzato in file separati.
+
+fol1
+
+  Ulteriore guadagno di composizionalità: due modelli aritmetica
+  modulo 3 e grafi.
+
+generic
+
+  Bozza per un sistema generico.
