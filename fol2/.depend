@@ -1,0 +1,32 @@
+fol2.lpo: fol2.mod fol2.sig 
+pred.lpo: pred.mod pred.sig lib.sig term.sig
+fol3.lpo: fol3.mod fol3.sig 
+term1.lpo: term1.mod term1.sig lib.sig
+fol.lpo: fol.mod fol.sig 
+term.lpo: term.mod term.sig lib.sig
+pred1.lpo: pred1.mod pred1.sig lib.sig term1.sig
+lib.lpo: lib.mod lib.sig 
+fol2.lpo: fol2.mod fol2.sig 
+pred.lpo: pred.mod pred.sig lib.sig term.sig
+fol3.lpo: fol3.mod fol3.sig 
+term1.lpo: term1.mod term1.sig lib.sig
+fol.lpo: fol.mod fol.sig 
+term.lpo: term.mod term.sig lib.sig
+pred1.lpo: pred1.mod pred1.sig lib.sig term1.sig
+lib.lpo: lib.mod lib.sig 
+fol2.lp: fol2.lpo 
+pred.lp: pred.lpo lib.lpo term.lpo
+fol3.lp: fol3.lpo 
+term1.lp: term1.lpo lib.lpo
+fol.lp: fol.lpo 
+term.lp: term.lpo lib.lpo
+pred1.lp: pred1.lpo lib.lpo term1.lpo
+lib.lp: lib.lpo 
+fol2.lp: fol2.lpo 
+pred.lp: pred.lpo lib.lpo term.lpo
+fol3.lp: fol3.lpo 
+term1.lp: term1.lpo lib.lpo
+fol.lp: fol.lpo 
+term.lp: term.lpo lib.lpo
+pred1.lp: pred1.lpo lib.lpo term1.lpo
+lib.lp: lib.lpo 
