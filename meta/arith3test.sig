@@ -4,6 +4,6 @@
 
 sig arith3test.
 
-accum_sig arith3interp, graphtests.
+accum_sig arith3interp, graphtests, fol.
 
 end

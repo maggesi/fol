@@ -17,5 +17,4 @@ unit "ex_id" ok.
 unit "ex_absorb" ko.
 unit "all_ord3" ok.
 
-
 end

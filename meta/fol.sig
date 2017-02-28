@@ -19,11 +19,18 @@ kind term, form type.
 type var string -> term.
 type fn string -> list term -> term.
 
+/* zero --> fn "zero" nil */
+/* node3 --> fn "node3" nil */
+/* add X Y --> fn "add" (X :: Y :: nil) */
+
 /* ------------------------------------------------------------------------- */
 /* Formulas.                                                                 */
 /* ------------------------------------------------------------------------- */
 
 kind model type -> type.
+
+/* edge X Y --> atom "edge" (X :: Y :: nil) */
+/* eq X Y --> atom "=" (X :: Y :: nil) */
 
 type atom string -> list term -> form.
 type truth, false form.
@@ -36,9 +43,9 @@ type forall, exists (term -> form) -> form.
 /* ------------------------------------------------------------------------- */
 
 type model
-  (A -> o) ->
-  (string -> list A -> A -> o) ->
-  (string -> list A -> o) ->
+  (A -> o) ->                             /* domain */
+  (string -> list A -> A -> o) ->         /* valutazione dei termini */
+  (string -> list A -> o) ->              /* valutazione delle ralazioni */
   model A.
 
 /* ------------------------------------------------------------------------- */
@@ -47,7 +54,7 @@ type model
 
 type undefined string -> A -> o.
 
-type domain A -> o.
+% type domain A -> o.
 type termval model A -> (string -> A -> o) -> term -> A -> o.
 type holds model A -> (string -> A -> o) -> form -> o.
 

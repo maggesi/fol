@@ -15,7 +15,7 @@ map F (X :: Xs) (Y :: Ys) :- F X Y, map F Xs Ys.
 /* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
 
-termval _M V (var S) A :- V S A.
+termval M V (var S) A :- V S A.
 termval M V (fn S Tms) A :-
   M = model _ Func _,
   map (termval M V) Tms As,

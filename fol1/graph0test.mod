@@ -23,7 +23,7 @@ test2 :- holds (forall X \ forall Y \ edge X Y).
 test3 :- holds (forall X \ forall Y \ imp (edge X Y) (edge Y X)).
 
 /* ------------------------------------------------------------------------- */
-/* Non esistono nodi isolato.                                                */
+/* Non esistono nodi isolati.                                                */
 /* ------------------------------------------------------------------------- */
 
 test4 :- holds (forall X \ exists Y \ or (edge X Y) (edge Y X)).
