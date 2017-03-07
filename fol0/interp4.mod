@@ -1,10 +1,10 @@
 /* ========================================================================= */
-/* Interpretation of fol in arith3 (domain, fol, arith3).                    */
+/* Interpretation of fol in arith4 (domain, fol, arith4).                    */
 /* ========================================================================= */
 
-module interp.
+module interp4.
 
-accumulate fol, arith3.
+accumulate fol, arith4.
 
 /* ------------------------------------------------------------------------- */
 /* Term evaluation.                                                          */
@@ -13,27 +13,26 @@ accumulate fol, arith3.
 termval zero 0.
 termval one 1.
 termval two 2.
-termval (add X Y) P :- termval X M, termval Y N, add3 M N P.
-termval (mul X Y) P :- termval X M, termval Y N, mul3 M N P.
-
+termval three 3.
+termval (add X Y) P :- termval X M, termval Y N, add4 M N P.
+termval (mul X Y) P :- termval X M, termval Y N, mul4 M N P.
 
 /* ------------------------------------------------------------------------- */
 /* Interpretation of predicates.                                             */
 /* ------------------------------------------------------------------------- */
 
 holds (eq X Y) :- termval X M, termval Y N, M = N.
-
 /* ------------------------------------------------------------------------- */
-/* Test for inverse.                                                         */
+/* Inverse.                                                                  */
 /* ------------------------------------------------------------------------- */
 
 
-%inv3 :- holds (forall N \  (exists X \ ( (eq (mul N X) one),
-%     	(eq (mul zero N) X)),
-%	(eq (mul N zero) X))).
-
-inv3 :- holds (forall N \  (exists X \ eq (mul N X) one)),
+inv4 :- holds (forall N \  (exists X \ eq (mul N X) one)),
      	holds (eq (mul zero N) X),
 	holds (eq (mul N zero) X).
+
+%inv4 :- holds (forall N \  (exists X \ ( (eq (mul N X) one),
+%     	(eq (mul zero N) X)),
+%	(eq (mul N zero) X))).
 
 end

@@ -1,12 +1,11 @@
 /* ========================================================================= */
-/* Model: addition on integers modulo 3.                                     */
+/* Model: addition on integers modulo 4.                                     */
 /* ========================================================================= */
 
-sig arith3.
+sig arith4.
 
 type domain A -> o.
-type add3 int -> int -> int -> o.
-type mul3 int -> int -> int -> o.
-
+type add4 int -> int -> int -> o.
+type mul4 int -> int -> int -> o.
 
 end
