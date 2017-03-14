@@ -2,9 +2,10 @@ graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig
 arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig
 arith3model.lpo: arith3model.mod arith3model.sig 
 graphmodel.lpo: graphmodel.mod graphmodel.sig 
-arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig
+arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig graphtests.sig tests.sig
 tests.lpo: tests.mod tests.sig fol.sig
 fol.lpo: fol.mod fol.sig 
+arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig
 graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
 graph1test.lpo: graph1test.mod graph1test.sig fol.sig graphmodel.sig graphtests.sig graph1interp.sig tests.sig
 graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig
@@ -14,9 +15,10 @@ arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig
 arith3model.lpo: arith3model.mod arith3model.sig 
 graphmodel.lpo: graphmodel.mod graphmodel.sig 
 graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig
-arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig
+arith3test.lpo: arith3test.mod arith3test.sig arith3interp.sig fol.sig arith3model.sig graphtests.sig tests.sig
 tests.lpo: tests.mod tests.sig fol.sig
 fol.lpo: fol.mod fol.sig 
+arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig
 graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
 graph1test.lpo: graph1test.mod graph1test.sig fol.sig graphmodel.sig graphtests.sig graph1interp.sig tests.sig
 graph0test.lpo: graph0test.mod graph0test.sig fol.sig graphmodel.sig graphtests.sig graph0interp.sig tests.sig
@@ -27,6 +29,7 @@ graphmodel.lp: graphmodel.lpo
 arith3test.lp: arith3test.lpo arith3interp.lpo fol.lpo arith3model.lpo
 tests.lp: tests.lpo 
 fol.lp: fol.lpo 
+arithtests.lp: arithtests.lpo 
 graph1interp.lp: graph1interp.lpo fol.lpo graphmodel.lpo
 graph1test.lp: graph1test.lpo fol.lpo graphmodel.lpo graphtests.lpo graph1interp.lpo tests.lpo
 graphtests.lp: graphtests.lpo 
@@ -39,6 +42,7 @@ graphtests.lp: graphtests.lpo
 arith3test.lp: arith3test.lpo arith3interp.lpo fol.lpo arith3model.lpo
 tests.lp: tests.lpo 
 fol.lp: fol.lpo 
+arithtests.lp: arithtests.lpo 
 graph1interp.lp: graph1interp.lpo fol.lpo graphmodel.lpo
 graph1test.lp: graph1test.lpo fol.lpo graphmodel.lpo graphtests.lpo graph1interp.lpo tests.lpo
 graph0test.lp: graph0test.lpo fol.lpo graphmodel.lpo graphtests.lpo graph0interp.lpo tests.lpo
