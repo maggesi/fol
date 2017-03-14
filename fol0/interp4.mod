@@ -27,12 +27,12 @@ holds (eq X Y) :- termval X M, termval Y N, M = N.
 /* ------------------------------------------------------------------------- */
 
 
-inv4 :- holds (forall N \  (exists X \ eq (mul N X) one)),
-     	holds (eq (mul zero N) X),
-	holds (eq (mul N zero) X).
+%inv4 :- holds (forall N \  (exists X \ eq (mul N X) one));
+%     	holds (eq (mul zero N) X);
+%	holds (eq (mul N zero) X).
 
-%inv4 :- holds (forall N \  (exists X \ ( (eq (mul N X) one),
-%     	(eq (mul zero N) X)),
+%inv4 :- holds (forall N \  (exists X \ ( (eq (mul N X) one))
+%     	(eq (mul zero N) X));
 %	(eq (mul N zero) X))).
 
 end

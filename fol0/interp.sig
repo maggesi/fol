@@ -26,4 +26,5 @@ type eq term -> term -> form.
 /* Inverse.                                                                  */
 /* ------------------------------------------------------------------------- */
 type inv3 o.
+type inv3bis o.
 end
