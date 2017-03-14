@@ -15,7 +15,9 @@ fol3
 fol0
 
   Primo passo verso una versione modulare.  Stesso esempio di fol3, ma
-  organizzato in file separati.
+  organizzato in file separati.  Aggiunta l'interpretazione
+  dell'inverso.  Inoltre aggiunti due modelli: booleani e aritmetica
+  modulo 4.
 
 fol1
 
