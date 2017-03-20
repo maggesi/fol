@@ -12,7 +12,7 @@ pred4 "=" [M, N] :- eq4 M N.
 
 use_model "arith4" (model domain4 func4 pred4).
 
-inv4 :- (exists X \ pred4 "=" ((func4 "*" (1 :: X)) :: 1)),
-     	(exists X \ pred4 "=" ((func4 "*" (2 :: X)) :: 1)).
+%inv4 :- (exists X \ pred4 "=" ((func4 "*" (1 :: X)) :: 1)),
+%     	(exists X \ pred4 "=" ((func4 "*" (2 :: X)) :: 1)).
 
 end
