@@ -8,6 +8,5 @@ accum_sig fol, arith3model.
 
 type func3 string -> list int -> int -> o.
 type pred3 string -> list A -> o.
-type inv3 o.
 
 end

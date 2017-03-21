@@ -7,16 +7,24 @@ module tests.
 check P ok :- P, !.
 check P ko.
 
-runtest Test P Exp Ret :-
-  unit Test Exp,
-  use_model "graph0" M,
+/*
+Mod = modello (stringa "graph0", "arith3", ...)
+Test = nome del test (stringa)
+P = formula (di fol)
+Exp = risultato atteso (ok o ko)
+Ret = risultato ottenuto (ok o ko)
+*/
+runtest Mod Test P Exp Ret :-
+  use_model Mod M,
+  unit Mod Test Exp,
   test Test P,
   check (holds M undefined P) Ret.
 
-runtest0 Test P Ret :-
-  use_model "graph0" M,
+runtest0 Mod Test P Ret :-
+  use_model Mod M,
   test Test P,
-  not (unit Test Exp),
-  check (holds M undefined P) Ret.
+  unit Mod Test Exp,
+  check (holds M undefined P) Ret,
+  not (Exp = Ret).
 
 end

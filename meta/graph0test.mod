@@ -4,17 +4,14 @@
 
 module graph0test.
 
-accumulate fol, graphmodel, graphtests, graph0interp, tests.
+unit "graph0" "link01" ok.
+unit "graph0" "link10" ko.
+unit "graph0" "graph_tot_conn" ko.
+unit "graph0" "graph_sym" ko.
+unit "graph0" "graph_no_isol" ok.
+unit "graph0" "graph_conn" ko.
 
 /*
-unit "link01" ok.
-unit "link10" ok.
-unit "graph_tot_conn" ko.
-unit "graph_sym" ok.
-unit "graph_no_isol" ok.
-unit "graph_conn" ok.
-*/
-
 test1 :- 
   holds (model domain func0 pred0) undefined
         (atom "edge" (fn "n0" nil :: fn "n1" nil :: nil)).
@@ -42,6 +39,7 @@ test5 :-
   holds (model domain func0 pred0) undefined
         (forall X \ exists Y \
            or (atom "edge" (X :: Y :: nil)) (atom "edge" (Y :: X :: nil))).
+*/
 
 /* ------------------------------------------------------------------------- */
 /* Grafo connesso.                                                           */

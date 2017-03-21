@@ -4,8 +4,6 @@
 
 module graph1interp.
 
-import fol, graphmodel.
-
 /* ------------------------------------------------------------------------- */
 /* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
@@ -25,7 +23,6 @@ pred1 "edge" [A, B] :- (link A B; link B A).
 /* Validity.                                                                 */
 /* ------------------------------------------------------------------------- */
 
-use_model "graph0" (model domain func1 pred1).
-% graph1_holds V Tm :- holds (model domain func1 pred1) V Tm.
+use_model "graph1" (model domain func1 pred1).
 
 end

@@ -1,9 +1,9 @@
 /* ========================================================================= */
-/* Theory of addition in Z3: tests and examples.                             */
+/* Theory of addition in Z4: tests and examples.                             */
 /* ========================================================================= */
 
-sig arith3test.
+sig arith4test.
 
-accum_sig fol, arith3interp, arithtests.
+accum_sig fol, arith4interp, arithtests.
 
 end

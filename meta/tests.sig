@@ -14,10 +14,10 @@ type check o -> result -> o.
 
 type test string -> form -> o.
 
-type unit string -> result -> o.
+type unit string -> string -> result -> o.
 
-type runtest string -> form -> result -> result -> o.
+type runtest string -> string -> form -> result -> result -> o.
 
-type runtest0 string -> form -> result -> o.
+type runtest0 string -> string -> form -> result -> o.
 
 end

@@ -24,6 +24,5 @@ pred0 "edge" (A :: B :: nil) :- link A B.
 /* ------------------------------------------------------------------------- */
 
 use_model "graph0" (model domain func0 pred0).
-%graph0_holds V Tm :- holds (model domain func0 pred0) V Tm.
 
 end

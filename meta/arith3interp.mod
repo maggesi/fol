@@ -4,8 +4,6 @@
 
 module arith3interp.
 
-import fol, arith3model.
-
 /* ------------------------------------------------------------------------- */
 /* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
@@ -27,12 +25,6 @@ pred3 "=" [M, N] :- eq3 M N.
 /* ------------------------------------------------------------------------- */
 
 use_model "arith3" (model domain3 func3 pred3).
-% arith3 V Tm :- holds (model domain3 func3 pred3) V Tm.
 
-
-%inv3 :- holds ("arith3" domain3 (exists X \ mul3 1 X 1)),
-%     	holds ("arith3" domain3 (exists X \ mul3 2 X 1)).
-     	% exists X \ mul3 1 X 1,
-	% exists X \ mul3 2 X 1.
 
 end

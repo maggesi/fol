@@ -1,9 +1,9 @@
-default : arith3test.lp graph0test.lp graph1test.lp
+default : main.lp
 
 %.lpo : %.mod
 	tjcc $<
 
-arith3test.lp graph0test.lp graph1test.lp : %.lp : %.lpo
+main.lp : %.lp : %.lpo
 	tjlink $<
 
 clean :
