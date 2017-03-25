@@ -1,7 +1,7 @@
 sig boolmodel.
 
 type domainb int -> o.
-%type domainb int -> o.
+
 type member A -> list A -> o.
 
 type addb int -> int -> int -> o.

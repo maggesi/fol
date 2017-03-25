@@ -1,0 +1,16 @@
+- Aggiungere i test di bool. (fatto e ho aggiunto mulb)
+
+- Implementare la forma prenessa (cominciando dalle funzioni piu facili)
+    psimplify (fatto)
+    nnf (fatto)
+    simplify
+    pullquant
+    prenex
+    pnf
+
+- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi.
+
+- Rifare anche il modello booleano come Harrison (+ ---> xor). (fatto)
+
+- In Harrison, il dominio e' una lista.  Da noi e' un predicato. (fatto)
+- Implementare la sostituzione (da Harrison)

@@ -4,4 +4,4 @@ sig psimplify.
 
 type psimplify1 form -> form -> o.
 type psimplify form -> form -> o.
-type test o.
+type example A -> o.
