@@ -4,11 +4,6 @@
 
 sig fol.
 
-/* ------------------------------------------------------------------------- */
-/* Library.                                                                  */
-/* ------------------------------------------------------------------------- */
-
-type map (A -> B -> o) -> list A -> list B -> o.
 
 /* ------------------------------------------------------------------------- */
 /* Terms.                                                                    */
@@ -42,12 +37,20 @@ type forall, exists (term -> form) -> form.
 /* Models.                                                                   */
 /* ------------------------------------------------------------------------- */
 
+
 type model
   (A -> o) ->                             /* domain */
   (string -> list A -> A -> o) ->         /* valutazione dei termini */
-  (string -> list A -> o) ->              /* valutazione delle ralazioni */
+  (string -> list A -> o) ->              /* valutazione delle relazioni */
   model A.
 
+/*
+type model
+  list A ->                               /* domain */
+  (string -> list A -> A -> o) ->         /* valutazione dei termini */
+  (string -> list A -> o) ->              /* valutazione delle relazioni */
+  model A.
+*/  
 /* ------------------------------------------------------------------------- */
 /* Evaluation and validity.                                                  */
 /* ------------------------------------------------------------------------- */

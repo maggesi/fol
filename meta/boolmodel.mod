@@ -1,10 +1,11 @@
 module boolmodel.
 
-member Name [Name|Tail].
-member Name [Head|Tail]:- member Name Tail.
+accumulate lib.
 
-domainb N :- member N (0 :: 1 :: nil).
+listdomain 0 (0 :: nil).
+listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
+domainb M :- listdomain 1 L, member M L.
 
 /*----------------disjunction----------------*/
 addb 1 1 1.

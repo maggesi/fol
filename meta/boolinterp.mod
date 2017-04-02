@@ -10,4 +10,10 @@ predb "=" [M, N] :- eqb M N.
 
 use_model "bool" (model domainb funcb predb).
 
+/*
+boolinterp N P :-
+  listdomain N D,
+  holds (model D funcb predb).
+*/
+
 end

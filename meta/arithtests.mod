@@ -37,7 +37,10 @@ test "ex_inv"
         imp (neg (atom "=" [X, fn "zero" []])) 
             (exists Y \ atom "=" [fn "*" [X, Y], fn "one" []])).
 
+
 test "all_inv"
-      (forall X \ exists Y \ atom "=" [fn "*" [X, Y], fn "one" []]).
+      (forall X \
+      	      exists Y \ atom "=" [fn "*" [X, Y], fn "one" []]).
+
 
 end

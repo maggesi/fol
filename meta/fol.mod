@@ -3,13 +3,7 @@
 /* ========================================================================= */
 
 module fol.
-
-/* ------------------------------------------------------------------------- */
-/* Library.                                                                  */
-/* ------------------------------------------------------------------------- */
-
-map F nil nil.
-map F (X :: Xs) (Y :: Ys) :- F X Y, map F Xs Ys.
+accumulate lib.
 
 /* ------------------------------------------------------------------------- */
 /* Term evaluation.                                                          */
@@ -32,6 +26,7 @@ holds M V (or P Q) :- holds M V P; holds M V Q.
 holds M V (imp P Q) :- holds M V Q; not (holds M V P).
 holds M V (iff P Q) :- holds M V P, holds M V Q.
 holds M V (iff P Q) :- not (holds M V P), not (holds M V Q).
+
 holds M V (exists x \ P x) :-
   M = model Domain _ _,
   Domain A,
@@ -42,5 +37,17 @@ holds M V (forall x \ P x) :-
   (pi x \ termval M V x A => not (holds M V (P x))),
   !, fail.
 holds _M _V (forall x \ _P x).
+/*
+holds M V (exists x \ P x) :-
+  M = model Domain _ _,
+  member A Domain,
+  pi x \ termval M V x A => holds M V (P x).
+holds M V (forall x \ P x) :-
+  M = model Domain _ _,
+  member A Domain,
+  (pi x \ termval M V x A => not (holds M V (P x))),
+  !, fail.
+holds _M _V (forall x \ _P x).
 
+*/
 end

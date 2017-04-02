@@ -1,16 +1,18 @@
-- Aggiungere i test di bool. (fatto e ho aggiunto mulb)
-
 - Implementare la forma prenessa (cominciando dalle funzioni piu facili)
-    psimplify (fatto)
-    nnf
-    simplify
-    pullquant
-    prenex
-    pnf
+    psimplify (fatto e corretto)
+    nnf (fatto e corretto)
+    simplify (provato)
+    pullquant (provato)
+    prenex (provato ma sicuro sbagliato)
+    pnf (provato ma sicuro sbagliato)
 
-- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi.
+- In Harrison, il dominio e' una lista.  Da noi e' un predicato. (provato)
+  Cambiare il tipo di model in modo che il dominio sia una lista.
 
-- Rifare anche il modello booleano come Harrison (+ ---> xor). (fatto)
+- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi. (provato)
 
-- In Harrison, il dominio e' una lista.  Da noi e' un predicato. (fatto)
 - Implementare la sostituzione (da Harrison)
+
+- File con libreria di funzioni sulle liste (da recuperare dal vecchio codice). (fatto)
+  Aggiungere anche un predicato numseg. Esempio:
+    numseg 3 6 [3,4,5,6].

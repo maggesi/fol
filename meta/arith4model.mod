@@ -1,5 +1,11 @@
 module arith4model.
+accumulate lib.
 
+listdomain 0 (0 :: nil).
+%listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
+listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
+
+domain4 N :- listdomain 4 L, member N L.
 domain4 0.
 domain4 1.
 domain4 2.
