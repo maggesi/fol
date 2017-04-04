@@ -1,5 +1,5 @@
 module arith4model.
-accumulate lib.
+
 
 listdomain 0 (0 :: nil).
 %listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.

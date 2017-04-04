@@ -16,6 +16,8 @@ nnf (neg (and P Q)) (or P1 Q1) :- nnf (neg P) P1, nnf (neg Q) Q1.
 nnf (neg (or P Q)) (and P1 Q1) :- nnf (neg P)P1, nnf (neg Q) Q1.
 nnf (neg (imp P Q)) (and P1 Q1) :- nnf P P1, nnf (neg Q) Q1.
 nnf (neg (iff P Q)) (or (and P1 Q1) (and P2 Q2)) :- nnf P P1, nnf (neg Q) Q1, nnf (neg P) P2, nnf Q Q2.
+nnf (forall P) (forall P).
+nnf (exists P) (exists P).
 
 nnfrec P Y:- psimplify P P1, nnf P1 Y. 
 
@@ -26,5 +28,12 @@ example3 Y:- nnf (imp false truth) Y.
 example4 Y:- nnf (or (imp truth false) truth) Y.
 
 example5 Y:- nnfrec (or (imp truth false) truth) Y.
+
+example6 A :-
+  nnf (forall X \ exists Y \ and (atom "P" (fn "F" (Y :: nil) :: nil)) truth) A.
+
+
+
+
 
 end

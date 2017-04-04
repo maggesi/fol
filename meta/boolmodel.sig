@@ -1,5 +1,5 @@
 sig boolmodel.
-
+accum_sig lib.
 
 type listdomain int -> list int -> o.
 type domainb int -> o.

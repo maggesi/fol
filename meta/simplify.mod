@@ -6,7 +6,7 @@ accumulate fol, lib, psimplify.
 In Harrison:
 let simplify1 fm =
 match fm with
-Forall(x,p) -> if mem x (fv p) then fm else p
+  Forall(x,p) -> if mem x (fv p) then fm else p
 | Exists(x,p) -> if mem x (fv p) then fm else p
 | _ -> psimplify1 fm;;
 
@@ -22,32 +22,27 @@ Not p -> simplify1 (Not(simplify p))
 | _ -> fm;;
 */
 
-/*----------------all variables----------------*/
-fvt (var X) [X].
-fvt (fn F Args) Vars :- map fvt Args Vls, unions Vls Vars.
-
-/*----------------free variables----------------*/
-fv (atom _ Tm) Vars :- fvt Tm Vars.
-fv (and P Q) Vars :- fv P Pvars, fv Q Qvars, append Pvars Qvars Vars.
-fv (forall x \ P x) Vars :- fv (P (fn "" [])) Vars.
-fv (exists x \ P x) Vars :- fv (P (fn "" [])) Vars.
-
 /*-------------------simplify1------------------*/
-%IDEA: if X is not a free variable, then forall x\ px is logically equivalent to p.
-simplify1 (forall X \ P X) Y:- fv (forall X \ P X) X.
-simplify1 (exists X \ P X) Y:- fv (exists X \ P X) X.
-simplify1 P Y:- psimplify P Y.
-
+%IDEA: if X is not a free variable, then forall x\ px is logically equivalent to p x.
+simplify1 (Quant X \ P) P :- (Quant = forall; Quant = exists), !.
+simplify1 (Quant X \ P X) (Quant X \ P X) :- (Quant = forall; Quant = exists), !.
+simplify1 P X:- psimplify P X.
 
 /*-------------------simplify-------------------*/
 
-simplify P Y :- simplify1 P Y.
 simplify (neg P) Y:- simplify P P1, simplify1 (neg P1) Y.
 simplify (and P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (and P1 Q1) Y.
 simplify (or P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (or P1 Q1) Y.
 simplify (imp P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (imp P1 Q1) Y.
 simplify (iff P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (iff P1 Q1) Y.
-simplify (forall X\ P X) Y:- simplify (forall x \ P x) P1, simplify1 (forall X\ P1 X) Y.
-simplify (exists X\ P X) Y:- simplify (forall x \ P x) P1, simplify1 (exists X\ P1) Y.
+simplify (forall X\ P X) Y:- (pi X \ simplify (P X) (P1 X)), simplify1 (forall X\ P1 X) Y.
+simplify (exists X\ P X) Y:- (pi X \ simplify (P X) (P1 X)), simplify1 (exists X\ P1 X) Y.
+simplify truth truth.
+simplify false false.
+
+example A:- simplify (forall X \ truth) A.
+example A:- simplify false A.
+example A:- print "seconda", simplify (and false (forall X \ truth)) A.
+example A:- print "seconda", simplify (and truth (forall X \ truth)) A.
 
 end

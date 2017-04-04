@@ -14,3 +14,5 @@ type simplify1 form -> A -> o.
 
 /*-------------simplify--------------*/
 type simplify form -> A -> o.
+
+type example A -> o.

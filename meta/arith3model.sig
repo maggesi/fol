@@ -3,7 +3,7 @@
 /* ========================================================================= */
 
 sig arith3model.
-
+accum_sig lib.
 
 type listdomain int -> list int -> o.
 type domain3 int -> o.
