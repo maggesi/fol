@@ -33,6 +33,12 @@ type neg form -> form.
 type and, or, imp, iff form -> form -> form.
 type forall, exists (term -> form) -> form.
 
+infixl and 5.
+infixl or 4.
+infixr imp 3.
+infixr iff 3.
+
+
 /* ------------------------------------------------------------------------- */
 /* Models.                                                                   */
 /* ------------------------------------------------------------------------- */

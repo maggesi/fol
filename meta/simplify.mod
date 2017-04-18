@@ -31,10 +31,10 @@ simplify1 P X:- psimplify P X.
 /*-------------------simplify-------------------*/
 
 simplify (neg P) Y:- simplify P P1, simplify1 (neg P1) Y.
-simplify (and P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (and P1 Q1) Y.
-simplify (or P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (or P1 Q1) Y.
-simplify (imp P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (imp P1 Q1) Y.
-simplify (iff P Q) Y:- simplify P P1, simplify Q Q1, simplify1 (iff P1 Q1) Y.
+simplify (P and Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 and Q1) Y.
+simplify (P or Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 or Q1) Y.
+simplify (P imp Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 imp Q1) Y.
+simplify (P iff Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 iff Q1) Y.
 simplify (forall X\ P X) Y:- (pi X \ simplify (P X) (P1 X)), simplify1 (forall X\ P1 X) Y.
 simplify (exists X\ P X) Y:- (pi X \ simplify (P X) (P1 X)), simplify1 (exists X\ P1 X) Y.
 simplify truth truth.
@@ -42,7 +42,7 @@ simplify false false.
 
 example A:- simplify (forall X \ truth) A.
 example A:- simplify false A.
-example A:- print "seconda", simplify (and false (forall X \ truth)) A.
-example A:- print "seconda", simplify (and truth (forall X \ truth)) A.
+example A:- print "seconda", simplify (false and (forall X \ truth)) A.
+example A:- print "seconda", simplify (truth and(forall X \ truth)) A.
 
 end

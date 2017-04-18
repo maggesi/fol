@@ -21,11 +21,11 @@ holds M V (atom S Tms) :-
   Pred S As.
 holds _ _ truth.
 holds M V (neg P) :- not (holds M V P).
-holds M V (and P Q) :- holds M V P, holds M V Q.
-holds M V (or P Q) :- holds M V P; holds M V Q.
-holds M V (imp P Q) :- holds M V Q; not (holds M V P).
-holds M V (iff P Q) :- holds M V P, holds M V Q.
-holds M V (iff P Q) :- not (holds M V P), not (holds M V Q).
+holds M V (P and Q) :- holds M V P, holds M V Q.
+holds M V (P or Q) :- holds M V P; holds M V Q.
+holds M V (P imp Q) :- holds M V Q; not (holds M V P).
+holds M V (P iff Q) :- holds M V P, holds M V Q.
+holds M V (P iff Q) :- not (holds M V P), not (holds M V Q).
 
 holds M V (exists x \ P x) :-
   M = model Domain _ _,

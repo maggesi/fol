@@ -1,22 +1,22 @@
 - Aggiungere test creativi (eventualmente scambiare input e output).
 
-- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R).
+- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R) (fatto con tanti problemi da pullquants in poi).
 
 - Guardare bene articolo la parte su prenex (p.74).
 
 - Implementare la forma prenessa (cominciando dalle funzioni piu facili)
     psimplify (fatto e corretto)
     nnf (fatto e corretto)
-    simplify (provato)
-    pullquant (provato ma sicuro sbagliato)
+    simplify (fatto)
+    pullquant (errori con infixl)
     prenex (provato)
     pnf (provato -in prenex.mod- ma sicuro sbagliato)
-    make
+    make (devo creare una cartella separata?)
 
 - In Harrison, il dominio e' una lista.  Da noi e' un predicato. (provato)
   Cambiare il tipo di model in modo che il dominio sia una lista.
 
-- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi. 
+- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi. ( problemi con mod)
 
 - Implementare la sostituzione (da Harrison)
 

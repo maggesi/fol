@@ -6,10 +6,10 @@ listdomain 0 (0 :: nil).
 listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
 domain4 N :- listdomain 4 L, member N L.
-domain4 0.
-domain4 1.
-domain4 2.
-domain4 3.
+%domain4 0.
+%domain4 1.
+%domain4 2.
+%domain4 3.
 
 add4 0 N N :- domain4 N.
 add4 N 0 N :- domain4 N.
