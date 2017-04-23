@@ -1,4 +1,4 @@
-default : prenex.lp
+default : testsucc.lp
 
 %.lpo : %.mod
 	tjcc $<

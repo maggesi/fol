@@ -21,16 +21,6 @@ nnf (exists P) (exists P).
 
 nnfrec P Y:- psimplify P P1, nnf P1 Y. 
 
-example Y:- nnf (neg (neg truth)) Y.
-example1 Y:- nnf (truth and false) Y.
-example2 Y:- nnf (false or truth) Y.
-example3 Y:- nnf (false imp truth) Y.
-example4 Y:- nnf ((truth imp false) or truth) Y.
-
-example5 Y:- nnfrec ((truth imp false) or truth) Y.
-
-example6 A :-  nnf (forall X \ exists Y \ (atom "P" (fn "F" (Y :: nil) :: nil)) and truth) A.
-
 
 
 

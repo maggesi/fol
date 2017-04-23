@@ -22,7 +22,7 @@ test "add_comm"
 % Esiste un elemento neutro.
 test "ex_neutral"
      (exists E \ forall X \
-        and (atom "=" [fn "+" [X, E], X]) (atom "=" [fn "+" [E, X], X])).
+        (atom "=" [fn "+" [X, E], X]) and (atom "=" [fn "+" [E, X], X])).
 
 % Esiste un elemento assorbente.
 test "ex_absorb"
@@ -34,7 +34,7 @@ test "all_ord_3"
 
 test "ex_inv"
      (forall X \
-        imp (neg (atom "=" [X, fn "zero" []])) 
+            (neg (atom "=" [X, fn "zero" []])) imp
             (exists Y \ atom "=" [fn "*" [X, Y], fn "one" []])).
 
 

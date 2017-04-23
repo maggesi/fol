@@ -29,5 +29,4 @@ psimplify (P iff Q) Y:- psimplify P P1, psimplify Q Q1, psimplify1 (P1 iff Q1) Y
 psimplify truth truth.
 psimplify false false.
 
-%example Q :- psimplify (and (or (neg false) truth) truth) Q.
-example Q :- psimplify ((neg false) or truth and truth) Q.
+

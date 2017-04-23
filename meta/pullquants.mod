@@ -24,15 +24,15 @@ and q’ = if r then subst (y |=> Var z) q else q in
 quant z (pullquants(op p’ q’));;
 */
 
-pullquants (Quant X \ P X Op Quant Y \ Q Y) (Quant Z \ R Z) :-
+pullquants (Quant X \ (P X) Op Quant Y \ (Q Y)) (Quant Z \ R Z) :-
  (Op = and; Op = or), (Quant = forall; Quant = exists), !,
  (pi W \ pullquants ((P W) Op (Q W)) (R W)).
-pullquants (Quant X \ P X Op Q) (Quant Z \ P Z Op Q) :-
+pullquants ((Quant X \ P X) Op Q) ((Quant Z \ P Z) Op Q) :-
  (Op = and; Op = or), (Quant = forall; Quant = exists), !,
  (pi W \ pullquants ((P W) Op Q) (R W)).
-pullquants (P Op (Quant Y \ Q Y)) (Quant Z \ P Op (Q Z)) :-
+pullquants (P Op (Quant Y \ Q Y)) (Quant Z \ (P Op Q Z)) :-
  (Op = and; Op = or), (Quant = forall; Quant = exists), !,
- (pi W \ pullquants (P Op (Q W)) (R W)).
+ (pi W \ pullquants (P Op Q W) (R W)).
 pullquants (P Op Q) (P Op Q) :- (Op = and; Op = or).
 
 % Problema: perché questo codice sotto non è equivalente a quello sopra?!
@@ -46,7 +46,7 @@ pullquants P (Quant X \ Q X) :-
   (pi X \ pullquants (P' X) (Q X)).
 pullquants P P :- print "Hello".
 */
-
+/*
 pqtest R :- pullquants ((forall X \ truth and (atom "P" [fn "F" [X]])) and (forall Y \ false or (atom "Q" [fn "G" [Y]]))) R.
 pqtest R :- pullquants ((forall X \ truth and (atom "P" [fn "F" [X]])) or (forall Y \ false or (atom "Q" [fn "G" [Y]]))) R.
 pqtest R :- pullquants ((exists X \ truth and (atom "P" [fn "F" [X]])) or (exists Y \ false or (atom "Q" [fn "G" [Y]]))) R.
@@ -54,5 +54,5 @@ pqtest R :- pullquants ((forall X \ truth and (atom "P" [fn "F" [X]])) and (exis
 
 pqtest R :- pullquants ((forall X \ truth and (atom "P" [fn "F" [X]])) and (false or truth)) R.
 pqtest R :- pullquants ((exists X \ truth and (atom "P" [fn "F" [X]])) or (false or truth)) R.
-
+*/
 end

@@ -1,6 +1,6 @@
 - Aggiungere test creativi (eventualmente scambiare input e output).
 
-- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R) (fatto con tanti problemi da pullquants in poi).
+- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R)(fatto con problemi per pullquants).
 
 - Guardare bene articolo la parte su prenex (p.74).
 
@@ -11,7 +11,7 @@
     pullquant (errori con infixl)
     prenex (provato)
     pnf (provato -in prenex.mod- ma sicuro sbagliato)
-    make (devo creare una cartella separata?)
+   
 
 - In Harrison, il dominio e' una lista.  Da noi e' un predicato. (provato)
   Cambiare il tipo di model in modo che il dominio sia una lista.

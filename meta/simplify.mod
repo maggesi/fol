@@ -40,9 +40,4 @@ simplify (exists X\ P X) Y:- (pi X \ simplify (P X) (P1 X)), simplify1 (exists X
 simplify truth truth.
 simplify false false.
 
-example A:- simplify (forall X \ truth) A.
-example A:- simplify false A.
-example A:- print "seconda", simplify (false and (forall X \ truth)) A.
-example A:- print "seconda", simplify (truth and(forall X \ truth)) A.
-
 end

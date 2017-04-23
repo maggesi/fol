@@ -12,6 +12,4 @@ pnx P P.
 
 pnf X Y :- simplify X X1, nnf X1 X2, pnx X2 Y.
 
-pnxtest A :- pnx (forall X \ truth) A.
-pnxtest A :- pnx (forall X \ exists Y \ atom "=" (X :: Y :: nil)) A.
-pnxtest A :- pnx (forall X \ and truth (exists Y \ atom "=" (X :: Y :: nil))) A.
+

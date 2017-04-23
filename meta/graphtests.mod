@@ -20,7 +20,7 @@ test "graph_tot_conn" (forall X \ forall Y \ atom "edge" (X :: Y :: nil)).
 
 test "graph_sym"
      (forall X \ forall Y \
-        imp (atom "edge" (X :: Y :: nil)) (atom "edge" (Y :: X :: nil))).
+        (atom "edge" (X :: Y :: nil)) imp (atom "edge" (Y :: X :: nil))).
 
 /* ------------------------------------------------------------------------- */
 /* Non esistono nodi isolati.                                                */
@@ -28,19 +28,19 @@ test "graph_sym"
 
 test "graph_no_isol"
      (forall X \ exists Y \
-        or (atom "edge" (X :: Y :: nil)) (atom "edge" (Y :: X :: nil))).
+      (atom "edge" (X :: Y :: nil)) or (atom "edge" (Y :: X :: nil))).
 
 /* ------------------------------------------------------------------------- */
 /* Grafo connesso.                                                           */
 /* ------------------------------------------------------------------------- */
 
 test "graph_conn"
-     (imp (and (forall X \ atom "path" (X :: X :: nil))
+     (((forall X \ atom "path" (X :: X :: nil)) and
                (forall X \ forall Y \
-                  imp (exists Z \
-                         and (atom "edge" (X :: Z :: nil))
-                             (atom "path" (Z :: Y :: nil)))
-                      (atom "path" (X :: Y :: nil))))
+                  (exists Z \
+                         (atom "edge" (X :: Z :: nil)) and
+                             (atom "path" (Z :: Y :: nil))) imp
+                      (atom "path" (X :: Y :: nil)))) imp
           (forall X \ forall Y \ atom "path" (X :: Y :: nil))).
 
 end
