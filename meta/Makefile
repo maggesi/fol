@@ -1,9 +1,12 @@
-default : testsucc.lp
+default :testsucc.lp
 
 %.lpo : %.mod
 	tjcc $<
 
-main.lp : %.lp : %.lpo
+
+
+
+testsucc.lp : %.lp : %.lpo
 	tjlink $<
 
 clean :

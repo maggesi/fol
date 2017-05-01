@@ -23,7 +23,7 @@ Not p -> simplify1 (Not(simplify p))
 */
 
 /*-------------------simplify1------------------*/
-%IDEA: if X is not a free variable, then forall x\ px is logically equivalent to p x.
+%IDEA: if X is not a free variable, then forall x\ px is logically equivalent to p.
 simplify1 (Quant X \ P) P :- (Quant = forall; Quant = exists), !.
 simplify1 (Quant X \ P X) (Quant X \ P X) :- (Quant = forall; Quant = exists), !.
 simplify1 P X:- psimplify P X.

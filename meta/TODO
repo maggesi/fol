@@ -1,6 +1,8 @@
 - Aggiungere test creativi (eventualmente scambiare input e output).
+  Ho provato ad implementare runtest (con qualche modifica) per questi test ma non ci sono riuscita (la prova l'ho lasciata in commento).
+  Il file principale era main2, con (tests2 -> runtest, testsucc -> tests, test2reselt -> risultati).
 
-- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R)(fatto con problemi per pullquants).
+- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R). (fatto)
 
 - Guardare bene articolo la parte su prenex (p.74).
 
@@ -8,16 +10,16 @@
     psimplify (fatto e corretto)
     nnf (fatto e corretto)
     simplify (fatto)
-    pullquant (errori con infixl)
+    pullquant (fatto) ----------------> corretto!
     prenex (provato)
-    pnf (provato -in prenex.mod- ma sicuro sbagliato)
+    pnf (provato -in prenex.mod- ma sicuro sbagliato) ----------------> corretto!
    
 
 - In Harrison, il dominio e' una lista.  Da noi e' un predicato. (provato)
   Cambiare il tipo di model in modo che il dominio sia una lista.
 
-- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi. ( problemi con mod)
+- Rifare l'esempio di pagina 126 in cui si trovano i numeri primi. (problemi con l'interpretazione)
 
 - Implementare la sostituzione (da Harrison)
 
--prenex discutere
+
