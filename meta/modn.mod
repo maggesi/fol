@@ -8,17 +8,16 @@ listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
 domainN N Q:- listdomain N L, member Q L.
 
-mulNN N X Y P:- domainN N X, domainN N Y, P1 is X * Y, P1 > (N - 1), P is P1 mod N, !.
-mulNN N X Y P:- domainN N X, domainN N Y, P is X * Y.
-eqN N Q Q :- domainN N Q.
-
 /*--------Interpretation--------*/
-funcN "*" [N, X, Y] P :- mulNN N X Y P.
-funcN "one" [] 1.
-funcN "zero" [] 0.
+% funcN N "+" [X, Y] P :- P is (X + Y) mod N.
+funcN N "*" [X, Y] P :- P is (X * Y) mod N.
+funcN N "zero" [] 0.
+funcN N "one" [] M :- M is 1 mod N.
+funcN N "two" [] M :- M is 2 mod N.
+funcN N "three" [] M :- M is 3 mod N.
 
+predN N "=" [X,Y] :- D is X-Y mod N, D = 0.
 
-predN "=" [N, X, Y] :- eqN N X Y.
 /*
 inv N :-
      (forall X \

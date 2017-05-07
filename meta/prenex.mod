@@ -24,13 +24,6 @@ pnx (P or Q) Y:- !,
   pnx P P1, pnx Q Q1, pullquants (P1 or Q1) Y.
 pnx P P.
 
-/* secondo me bisogna aggiungere:
-
-pnx truth truth.
-pnx false false.
-
-ed eliminare pnx P P */
-
 pnf X Y :- simplify X X1, nnf X1 X2, pnx X2 Y.
 
 end
