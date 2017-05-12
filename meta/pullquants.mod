@@ -1,5 +1,5 @@
 module pullquants.
-accumulate fol, simplify, lib.
+
 /*To pull out all quantifiers that occur as immediate subformulas of either conjunction or disjunction
 let rec pullquants fm =
 match fm with
@@ -25,46 +25,26 @@ quant z (pullquants(op p’ q’));;
 */
 
 %Op all'inizio
-%pullquant (Op (Quant X \ P X) (Quant Y \ Q Y)) (Quant Z \ (Op (P Z) (Q Z))) :- (Op = and; Op = or), quant Quant Y, !. ----------------> continua a dare problemi
+%pullquant (Op (Quant X \ P X) (Quant Y \ Q Y)) (Quant Z \ (Op (P Z) (Q Z))) :- (Op = and; Op = or), quant Quant, !.
 
-pullquant ((Quant X \ P X) and (Quant Y \ Q Y)) (Quant Z \ ((P Z) and (Q Z))) :- quant Quant Y, !.
-pullquant ((Quant X \ P X) or (Quant Y \ Q Y)) (Quant Z \ ((P Z) or (Q Z))) :- quant Quant Y, !.
-pullquant ((Quant X \ P X) and Q) (Quant Z \ (P Z) and Q) :- quant Quant Y, !.
-pullquant ((Quant X \ P X) or Q) (Quant Z \ (P Z) or Q) :- quant Quant Y, !.
-pullquant (P and (Quant Y \ Q Y)) (Quant Z \ P and (Q Z)) :- quant Quant Y, !.
-pullquant (P or (Quant Y \ Q Y)) (Quant Z \ P or (Q Z)) :- quant Quant Y, !.
-pullquant (Quant X \ P) (Quant X \ P) :- quant Quant Y.
+pullquant1 ((Quant X \ P X) and (Quant Y \ Q Y)) (Quant Z \ ((P Z) and (Q Z))) :- quant Quant, !.
+pullquant1 ((Quant X \ P X) or (Quant Y \ Q Y)) (Quant Z \ ((P Z) or (Q Z))) :- quant Quant, !.
+pullquant1 ((Quant X \ P X) and Q) (Quant Z \ (P Z) and Q) :- quant Quant, !.
+pullquant1 ((Quant X \ P X) or Q) (Quant Z \ (P Z) or Q) :- quant Quant, !.
+pullquant1 (P and (Quant Y \ Q Y)) (Quant Z \ P and (Q Z)) :- quant Quant, !.
+pullquant1 (P or (Quant Y \ Q Y)) (Quant Z \ P or (Q Z)) :- quant Quant, !.
+pullquant1 (Quant X \ P) (Quant X \ P) :- quant Quant.
 
-quant forall forall.
-quant exists exists.
+pullquant P Q:- reflc pullquant1 P Q.
+quant forall.
+quant exists.
 
-/*
-pullquants P (Quant X \ Q X) :- (Quant = forall; Quant = exists), print "hello\n", flush std_out, term_to_string Q Sq,
-print Sq, term_to_string Quant Qu, print Qu, print "\n", flush std_out,
-  pullquant P (Quant X \ P' X), !, print "hi\n", flush std_out,
-  (pi X \ pullquants (P' X) (Q X)).
-*/
 
-/*
-pullquants P (forall X \ Q X) :-
-  print "all\n", flush std_out, term_to_string P Sq,
-  print Sq, print "\n", flush std_out,
-  pullquant P (forall X \ P' X), !, print "hi\n", flush std_out,
-  (pi X \ pullquants (P' X) (Q X)),
-  !.
-pullquants P (exists X \ Q X) :-
-  print "ex\n", flush std_out, term_to_string P Sq,
-  print Sq, print "\n", flush std_out,
-  pullquant P (exists X \ P' X), !, print "hi\n", flush std_out,
-  (pi X \ pullquants (P' X) (Q X)),
-  !.
-pullquants P P :- not(pullquant P R).
-*/
+pullquants1 P (Quant X \ Q X) :-
+  pullquant P (Quant X \ P' X),
+ quant Quant, 
+ (pi X \ pullquants1 (P' X) (Q X)).
 
-pullquants P (Quant X \ Q X) :-
-  pullquant P (Quant X \ P' X), !,
- quant Quant Y, %non dovrebbe servire, ma serve
- (pi X \ pullquants (P' X) (Q X)).
-pullquants P P.
+pullquants P Q:- reflc pullquants1 P Q.
 
 end

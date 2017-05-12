@@ -1,5 +1,5 @@
 module nenf.
-accumulate fol, psimplify.
+
 /*
 let rec nenf fm =
 match fm with

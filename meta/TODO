@@ -1,18 +1,8 @@
-- Aggiungere test creativi (eventualmente scambiare input e output).
-  Ho provato ad implementare runtest (con qualche modifica) per questi test ma non ci sono riuscita (la prova l'ho lasciata in commento).
-  Il file principale era main2, con (tests2 -> runtest, testsucc -> tests, test2reselt -> risultati).
-
-- Usare gli operatori infissi (or (and P Q) R) ---> (P and Q or R). (fatto)
-
-- Guardare bene articolo la parte su prenex (p.74).
-
-- Implementare la forma prenessa (cominciando dalle funzioni piu facili)
-    psimplify (fatto e corretto)
-    nnf (fatto e corretto)
-    simplify (fatto)
-    pullquant (fatto) ----------------> corretto!
-    prenex (provato)
-    pnf (provato -in prenex.mod- ma sicuro sbagliato) ----------------> corretto!
+- Modifiche effettuate a seguito dei test:
+  -modificato psimplify aggiungengo una clausola per psimplify (P imp truth) Q. Aggiunto anche la semplificazione quando il risultato è una negazione.
+  -modificato pullquants, ho aggiunto la chiusura riflessiva (reflc) perché molti test non riuscivano.
+  -modificato nnf dopo aver visto che i test non riuscivano e dopo aver consultato Harrison e aver visto che lo aveva definito diverso.-----------> ancora problemi
+  
    
 
 - In Harrison, il dominio e' una lista.  Da noi e' un predicato. (provato)
@@ -22,4 +12,4 @@
 
 - Implementare la sostituzione (da Harrison)
 
-
+- Skolemization

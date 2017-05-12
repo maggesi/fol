@@ -1,6 +1,6 @@
 sig pullquants.
 accum_sig fol.
-type quant A -> A -> o.
-type pullquant, pullquants form -> form -> o.
+type quant A -> o.
+type pullquant1, pullquant, pullquants, pullquants1 form -> form -> o.
 
 

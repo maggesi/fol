@@ -1,6 +1,6 @@
 sig simplify.
 
-accum_sig fol, lib.
+accum_sig fol, lib, psimplify.
 
 type bottom term.
 /*----------------variables----------*/
@@ -10,7 +10,8 @@ type fv form -> list string -> o.
 
 /*-------------simplify1-------------*/
 type simplify1 form -> A -> o.
-
+type simplify0 form -> A -> o.
+type simplify2 form -> A -> o.
 
 /*-------------simplify--------------*/
 type simplify form -> A -> o.

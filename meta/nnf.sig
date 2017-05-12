@@ -1,7 +1,7 @@
 sig nnf.
 
-accum_sig fol.
-type nnf1 form -> form -> o.
+accum_sig fol, simplify, psimplify.
+
 type nnf form -> form -> o.
 
 
