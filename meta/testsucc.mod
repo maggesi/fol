@@ -24,12 +24,12 @@ nnftest3 Y:- nnf (false or truth) Y.
 nnftest4 Y:- nnf (false imp truth) Y.
 nnftest5 Y:- nnf ((truth imp false) or truth) Y.
 nnftest6 Y:- nnf (Y imp truth) (truth or truth).
+%nnftest7 Y:-  nnf (exists Y\ (forall X \ neg (neg (atom "P" nil)))) Y.
 nnftest7 Y:-  nnf ((forall X \ exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) and truth) Y.
-%problema con nnftest8: R = forall (W1\ exists (W2\ atom "P" (fn "F" (W2 :: nil) :: nil) imp truth))
+%nnftest8 Y:- nnf (atom "P" (fn "F" (A :: nil) :: nil) imp truth) Y.
 nnftest8 Y:- nnf (forall X \ (exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) imp truth) Y.
 nnftest9 Y:- nnf (neg (neg (truth imp false))) Y.
 nnftest10 Y:- nnf ((forall X \ (exists A \ (atom "P" (fn "F" (A :: nil) :: nil)))) imp truth) Y.
-%nnftest10: no solutions.
 nnftest11 Y:- nnf ((truth imp false) or truth) Y.
 nnftest12 Y:- nnf (((neg truth) imp false) iff ((neg false) imp truth)) Y.
 nnftest13 Y:- nnf (forall X \ exists A \ (atom "P" (fn "F" (A :: nil) :: nil)) imp truth) Y.

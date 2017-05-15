@@ -30,21 +30,24 @@ quant z (pullquants(op p’ q’));;
 pullquant1 ((Quant X \ P X) and (Quant Y \ Q Y)) (Quant Z \ ((P Z) and (Q Z))) :- quant Quant, !.
 pullquant1 ((Quant X \ P X) or (Quant Y \ Q Y)) (Quant Z \ ((P Z) or (Q Z))) :- quant Quant, !.
 pullquant1 ((Quant X \ P X) and Q) (Quant Z \ (P Z) and Q) :- quant Quant, !.
+pullquant1 ((exists X \ P X) or Q) (exists Z \ ((P Z) or Q)) :-
+  print "hello: ", term_to_string ((exists X \ P X) or Q) S, print S, print " ",
+  print "out: ", term_to_string (exists Z \ ((P Z) or Q)) S', print S',
+  print "\n", flush std_out, !.
 pullquant1 ((Quant X \ P X) or Q) (Quant Z \ (P Z) or Q) :- quant Quant, !.
 pullquant1 (P and (Quant Y \ Q Y)) (Quant Z \ P and (Q Z)) :- quant Quant, !.
 pullquant1 (P or (Quant Y \ Q Y)) (Quant Z \ P or (Q Z)) :- quant Quant, !.
 pullquant1 (Quant X \ P) (Quant X \ P) :- quant Quant.
 
-pullquant P Q:- reflc pullquant1 P Q.
+pullquant P Q:- reflct "pullquant" pullquant1 P Q.
 quant forall.
 quant exists.
 
-
 pullquants1 P (Quant X \ Q X) :-
   pullquant P (Quant X \ P' X),
- quant Quant, 
- (pi X \ pullquants1 (P' X) (Q X)).
+  quant Quant,    %%%%%%%%%%%%%%%% PERCHE'?????? (ALTRIMENTI Stack overflow)
+  (pi X \ pullquants (P' X) (Q X)).
 
-pullquants P Q:- reflc pullquants1 P Q.
+pullquants P Q:- reflct "pullquants" pullquants1 P Q.
 
 end

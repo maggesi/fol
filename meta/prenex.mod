@@ -15,14 +15,12 @@ prenex (forall X \ P X)  (forall X \ D X):- pi x\ (term x) => (prenex (B x) (D x
 ...
 merge (and (all B) (all C)) all D:- pi x \ (term x) => merge (and (B x) C) (D x).
 */
+
+pnx (P and Q) Y:- pnx P P1, pnx Q Q1, pullquants (P1 and Q1) Y.
+pnx (P or  Q) Y:- pnx P P1, pnx Q Q1, pullquants (P1 or Q1) Y.
 pnx (Quant X \ P X) (Quant X \ Q X) :-
   quant Quant, !,
   pi X \ pnx (P X) (Q X).
-
-pnx (P and Q) Y:- !,
-  pnx P P1, pnx Q Q1, pullquants (P1 and Q1) Y.
-pnx (P or Q) Y:- !,
-  pnx P P1, pnx Q Q1, pullquants (P1 or Q1) Y.
 pnx P P.
 
 pnf X Y :- simplify X X1, nnf X1 X2, pnx X2 Y.

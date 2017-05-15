@@ -22,4 +22,7 @@ numseg N Y [N|Tail]:- not (N = Y), N1 is N + 1, numseg N1 Y Tail.
 
 reflc R X Y:- R X Y, !.
 reflc R X X.
+
+reflct S R X Y:- R X Y, !.
+reflct S R X X :- print S, print " - reflc: ", term_to_string X T, print T, print "\n"; flush std_out.
 end

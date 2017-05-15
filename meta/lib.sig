@@ -15,4 +15,5 @@ type member A -> list A -> o.
 type numseg int -> int -> list int -> o.
 
 type reflc (A -> A -> o) -> A -> A -> o.
+type reflct string -> (A -> A -> o) -> A -> A -> o.
 end
