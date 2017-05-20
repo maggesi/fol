@@ -14,6 +14,11 @@ type member A -> list A -> o.
 
 type numseg int -> int -> list int -> o.
 
+type rc, tc, rtc, nf (A -> A -> o) -> A -> A -> o.
+
+type determ, reduct  (A -> A -> o) -> A -> A -> o.
+
 type reflc (A -> A -> o) -> A -> A -> o.
+
 type reflct string -> (A -> A -> o) -> A -> A -> o.
 end

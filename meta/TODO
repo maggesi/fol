@@ -1,7 +1,4 @@
-- Modifiche effettuate a seguito dei test:
-  -modificato psimplify aggiungengo una clausola per psimplify (P imp truth) Q. Aggiunto anche la semplificazione quando il risultato è una negazione.
-  -modificato pullquants, ho aggiunto la chiusura riflessiva (reflc) perché molti test non riuscivano.
-  -modificato nnf dopo aver visto che i test non riuscivano e dopo aver consultato Harrison e aver visto che lo aveva definito diverso.-----------> ancora problemi
+
   
    
 
