@@ -40,14 +40,7 @@ nnf (exists X\ P X) (exists X\ P1 X) :- pi X \ nnf (P X) (P1 X).
 nnf (neg (forall X\ P X)) (exists X\ P1 X) :- pi X \ nnf (neg (P X)) (P1 X).
 nnf (neg (exists X\ P X)) (forall X\ P1 X) :- pi X \ nnf (neg (P X)) (P1 X).
 
-/* 
-Con queste non funziona più nnf quando incontra un quantificatore:
 
-nnf (forall X \ P) (forall X \ P1):- nnf P P1.
-nnf (exists X \ P) (exists X \ P1):- nnf P P1.
-nnf (neg (forall X \ P)) (exists X \ P1):- nnf (neg P) P1.
-nnf (neg (exists X \ P)) (forall X \ P1):- nnf (neg P) P1.
-*/
 
 
 

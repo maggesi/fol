@@ -13,15 +13,14 @@ psimplify2 (truth or P) truth.
 psimplify2 (P or truth) truth. 
 psimplify2 (truth imp P) P.
 psimplify2 (false imp P) truth. 
-psimplify2 (P imp false) Q:- psimplify2 (neg P) Q.%(neg P).
+psimplify2 (P imp false) (neg P).
 psimplify2 (P imp truth) P.
-%senza la clausola di sopra la soluzione per (X imp truth) in: psimplifytest8, psimplifytest9, psimplifytest10, non è corretta.
 psimplify2 (P iff truth) P.
 psimplify2 (truth iff P) P.
-%psimplify2 (P iff false) (neg P).
-psimplify2 (P iff false) Q:- psimplify2 (neg P) Q.
-%psimplify2 (false iff P) (neg P).
-psimplify2 (false iff P) Q:- psimplify2 (neg P) Q.
+psimplify2 (false iff false) truth.
+psimplify2 (P iff false) (neg P).
+psimplify2 (false iff P) (neg P).
+
 
 psimplify1 P Q:- reflc psimplify2 P Q.
 

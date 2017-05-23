@@ -24,9 +24,7 @@ nnftest3 Y:- nnf (false or truth) Y.
 nnftest4 Y:- nnf (false imp truth) Y.
 nnftest5 Y:- nnf ((truth imp false) or truth) Y.
 nnftest6 Y:- nnf (Y imp truth) (truth or truth).
-%nnftest7 Y:-  nnf (exists Y\ (forall X \ neg (neg (atom "P" nil)))) Y.
 nnftest7 Y:-  nnf ((forall X \ exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) and truth) Y.
-%nnftest8 Y:- nnf (atom "P" (fn "F" (A :: nil) :: nil) imp truth) Y.
 nnftest8 Y:- nnf (forall X \ (exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) imp truth) Y.
 nnftest9 Y:- nnf (neg (neg (truth imp false))) Y.
 nnftest10 Y:- nnf ((forall X \ (exists A \ (atom "P" (fn "F" (A :: nil) :: nil)))) imp truth) Y.
@@ -38,7 +36,7 @@ nnftest15 Y:- nnf (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) or false)
 nnftest16 Y:- nnf (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) or false) Y.
 nnftest17 Y:- nnf ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) iff truth) Y.
 nnftest18 Y:- nnf (forall (X\ exists (Y \ atom "=" (X :: Y :: nil))) imp false) Y.
-%formula usata semplificata con simplifytest11, presa da pnftest3
+
 
 /*-------- Test for simplify --------*/
 simplifytest1 A:- simplify (forall X \ truth) A.
@@ -52,6 +50,7 @@ simplifytest8 A:- simplify ((false and (exists Y \ truth)) and (truth imp false)
 simplifytest9 A:- simplify ((((exists Y \ false) iff (forall X \ false)) and truth) and (truth imp false)) A.
 simplifytest10 A:- simplify ((forall X \ false) or truth) A.
 simplifytest11 A:- simplify ((forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))) imp false) A.
+
 simplifytest12 A:- simplify ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)) A.
 simplifytest13 A :- simplify (truth or (forall Y \ (atom "P" [fn "F" [X]]))) A.
 simplifytest14 A :- simplify (truth imp (forall Y \ (atom "P" [fn "F" [X]]))) A.
@@ -88,18 +87,19 @@ pqtest10 R:- pullquants ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp t
 pnxtest1 A :- pnx (forall X \ truth) A.
 pnxtest2 A :- pnx (forall X \ exists Y \ atom "=" (X :: Y :: nil)) A.
 pnxtest3 A :- pnx (forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))) A.
+%A = forall (W1\ exists (W2\ truth and atom "=" (W1 :: W2 :: nil)))
+%More solutions (y/n)? y
+%A = forall (W1\ truth and exists (W2\ atom "=" (W1 :: W2 :: nil)))
 
 /*-------- Test for PNF --------*/
 
 pnftest1 A:- pnf ((forall X \ truth) imp (forall Y \ false)) A.
 pnftest2 A:- pnf (((forall X \ truth) imp truth) and (forall Y \ truth)) A.
 pnftest3 A:- pnf ((forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))) imp false) A.
-%no solutions for pnftest3
 pnftest4 A :- pnf ((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))) A.
 pnftest5 A :- pnf (((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))) imp forall X \ false) A.
-%no solutions before
 pnftest6 A:- pnf (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)) and (exists Y \ (atom "P" (fn "F" (Y :: nil) :: nil)))) A.
-%no solutions before
+
 
 
 

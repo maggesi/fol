@@ -6,6 +6,10 @@ append (X :: Xs) Ys (X :: Zs) :- append Xs Ys Zs.
 unions [] [].
 unions (X :: Xs) Ys :- unions Xs Zs, append X Zs Ys.
 
+union [] L L.
+union [Head|Tail] L1 L:- member Head L1, union Tail L1 L.
+union [Head|Tail] L1 [Head|L]:- union Tail L1 L.
+
 map F [] [].
 map F (X :: Xs) (Y :: Ys) :- F X Y, map F Xs Ys.
 
@@ -45,6 +49,6 @@ reduct R X X.
 
 %con traccia
 reflct S R X Y:- R X Y, !.
-reflct S R X X :- print S, print " - reflc: ", term_to_string X T, print T, print "\n"; flush std_out.
+reflct S R X X :- print S, print " - reflc: ", term_to_string X T, print T, print "\n", flush std_out.
 
 end
