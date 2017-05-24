@@ -16,6 +16,7 @@ psimplifytest8 Q :- psimplify ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))
 psimplifytest9 Q :- psimplify ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) imp false) Q.
 psimplifytest10 Q :- psimplify (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) imp truth) and ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) imp truth)) Q.
 psimplifytest11 Q:- psimplify (((neg truth) and truth) iff (truth imp false)) Q.
+psimplifytest12 Q:- psimplify ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) imp (exists W\ atom "P" [W])) Q.
 
 /*-------- Test for NNF --------*/
 nnftest1 Y:- nnf (neg (neg truth)) Y.
@@ -36,6 +37,7 @@ nnftest15 Y:- nnf (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) or false)
 nnftest16 Y:- nnf (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) or false) Y.
 nnftest17 Y:- nnf ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil))) iff truth) Y.
 nnftest18 Y:- nnf (forall (X\ exists (Y \ atom "=" (X :: Y :: nil))) imp false) Y.
+nnftest19 Y:- nnf (exists (W1\ atom "P" (W1 :: nil) and forall (W2\ truth)) imp exists (W1\ atom "P" (W1 :: nil))) Y.
 
 
 /*-------- Test for simplify --------*/
