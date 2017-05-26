@@ -2,14 +2,21 @@ module lib.
 
 append [] Xs Xs.
 append (X :: Xs) Ys (X :: Zs) :- append Xs Ys Zs.
-%unione liste dentro liste
+
 unions [] [].
 unions (X :: Xs) Ys :- unions Xs Zs, append X Zs Ys.
 
+/*
 union [] L L.
-union L [] L.
-union [Head|Tail] L1 L:- member Head L1, union Tail L1 L.
+union [Head|Tail] L1 L:- member Head L1, !, union Tail L1 L.
 union [Head|Tail] L1 [Head|L]:- union Tail L1 L.
+*/
+
+union [] L L.
+union [Head|Tail] L1 L:- insert Head L1 L2, union Tail L2 L.
+
+insert X Xs Xs:- member X Xs, !.
+insert X Xs [X|Xs].
 
 map F [] [].
 map F (X :: Xs) (Y :: Ys) :- F X Y, map F Xs Ys.
@@ -26,7 +33,7 @@ numseg N N [N].
 numseg N Y [N|Tail]:- not (N = Y), N1 is N + 1, numseg N1 Y Tail. 
 /*---------------------------------------------------Varie chiusure riflessive e transitive: */
 %% Senza taglio.
-%da usare in simplify
+
 rc R X Y :- R X Y.
 rc R X X.
 %chiusura transitiva

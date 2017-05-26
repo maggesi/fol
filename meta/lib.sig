@@ -6,6 +6,7 @@ type append list A -> list A -> list A -> o.
 type unions list (list A) -> list A -> o.
 
 type union list A -> list A -> list A -> o.
+type insert A -> list A -> list A -> o.
 
 type map (A -> B -> o) -> list A -> list B -> o.
 
