@@ -2,12 +2,26 @@ sig skolem.
 
 accum_sig fol.
 
-type freesTm term -> list A -> o.
-type freesTms list term -> list A -> o.
 
-type freesFm form -> list A -> o.
+% -------------------------------------------------------------------------
 
-type mkVar string -> term -> o. 
+type variant string -> list string -> string -> o.
+% type is_conn form -> (form -> form -> form) -> form -> form -> o.
+% type is_binop (form -> form -> form) -> o.
+type myskolem form -> list string -> form -> list string -> o.
+% type skolem2 (form -> form -> form) -> form -> form -> list string -> form -> list string -> o.
+type test int -> form -> form -> list string -> o.
+
+% -------------------------------------------------------------------------
+
+type freesTm term -> list term -> o.
+type freesTms list term -> list term -> o.
+type freesFm form -> list term -> o.
+
+% type is_term term -> o.
+% type is_atom form -> o.
+type is_var term -> o.
+% type mkVar string -> term -> o. 
 
 
 
