@@ -42,4 +42,3 @@ skolemtest22, skolemtest23,skolemtest24, skolemtest25 form -> o.
 type test1, test2, test3, test4, test1a, test2a, test3a, test4a list A -> o.
 type test4b term -> o.
 type test5, test6, test7, test8, test9, test10 list A -> o.
-%type countQtest form -> int -> o.
