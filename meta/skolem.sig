@@ -8,10 +8,12 @@ accum_sig fol.
 type variant string -> list string -> string -> o.
 % type is_conn form -> (form -> form -> form) -> form -> form -> o.
 % type is_binop (form -> form -> form) -> o.
+type myskolem0 form -> list string -> form -> list string -> o.
 type myskolem form -> list string -> form -> list string -> o.
 % type skolem2 (form -> form -> form) -> form -> form -> list string -> form -> list string -> o.
 type test int -> form -> form -> list string -> o.
-
+type reflcSkolem (A -> B -> A -> B -> o) -> A -> B -> A -> B -> o.
+type askolemizetest int -> form -> form -> o.
 % -------------------------------------------------------------------------
 
 type freesTm term -> list term -> o.

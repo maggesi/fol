@@ -46,27 +46,38 @@ variant_aux Avoid S [_|L] S' :- variant_aux Avoid S L S'.
 
 
 
-myskolem truth Fms truth Fms.
-myskolem false Fms false Fms.
-myskolem (atom S Args) Fms (atom S Args) Fms.
-myskolem (P and Q) Fns (P' and Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
-myskolem (P or Q) Fns (P' or Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
-myskolem (P imp Q) Fns (P' imp Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
-myskolem (P iff Q) Fns (P' iff Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
+myskolem0 truth Fms truth Fms.
+myskolem0 false Fms false Fms.
+myskolem0 (atom S Args) Fms (atom S Args) Fms.
+myskolem0 (P and Q) Fns (P' and Q') Fns' :-
+  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
+myskolem0 (P or Q) Fns (P' or Q') Fns' :-
+  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
+myskolem0 (P imp Q) Fns (P' imp Q') Fns' :-
+  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
+myskolem0 (P iff Q) Fns (P' iff Q') Fns' :-
+  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
 
-myskolem (forall x \ P x) Fns (forall x \ P' x) Fns' :-
-  pi x \ is_var x => myskolem (P x) Fns (P' x) Fns'.
-myskolem (exists x \ P x) Fns (Q (fn S Vs)) Fns' :-
-  variant "sko" Fns S,
-  freesFm (exists x \ P x) Vs,
-  %%% map mkVar L Vs,
-  %%% myskolem (P (fn S Vs)) [S|Fns] Q Fns'.
-  pi x \ myskolem (P x) [S|Fns] (Q x) Fns'.
+myskolem0 (forall x \ P x) Fns (forall x \ P' x) Fns' :-
+  pi x \ is_var x => myskolem0 (P x) Fns (P' x) Fns'.
+myskolem0 (exists x \ P x) Fns (Q (fn S Vs)) Fns' :-
+   print "Hello",
+   variant "sko" Fns S,
+   freesFm (exists x \ P x) Vs,
+   %%% map mkVar L Vs,
+   %%% myskolem0 (P (fn S Vs)) [S|Fns] Q Fns'.
+   pi x \ myskolem0 (P x) [S|Fns] (Q x) Fns'.
 
+myskolem0 (neg A) Fns (neg A1) Fns' :- myskolem0 A Fns A1 Fns'.
+%myskolem0 (forall X \ (neg (A X))) Fns (forall X \ (neg (B X))) Fns' :- myskolem0 (forall X \ (A X)) Fns (forall X \ (B X)) Fns'.
+myskolem0 (exists x \ neg (P x)) Fns (neg Q) Fns' :- myskolem0 (exists x \ P x) Fns Q Fns'.
+
+
+
+myskolem A Fms B Fms' :- reflcSkolem myskolem0 A Fms B Fms'.
+reflcSkolem R X Fms Y Fms':- R X Fms Y Fms', !.
+reflcSkolem R X Fms X Fms.
+%aggiunta per capire dove stava l'errore
 
 askolemize P Q:- simplify P P1, nnf P1 P2, myskolem P2 [] Q Fms.
 
@@ -102,18 +113,43 @@ test 11 A B Fms :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) i
 test 12 A B Fms :- A = ((exists X \ (atom "P" [fn "F" [X]])) iff (forall Y \ (atom "Q" [fn "G" [Y]]))), myskolem A [] B Fms.
 test 13 A B Fms :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), myskolem A [] B Fms.
 
-%NO MORE SOLUTION DA 14 A 18
+%Soluzioni sbagliate
+test 014 A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( X :: nil)))), myskolem A [] B Fms.
 test 14 A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), myskolem A [] B Fms.
 test 15 A B Fms :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), myskolem A [] B Fms.
-%da nnf e simplify della 17
-test 16 A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
-%test per askolemize
-test 17 A B Fms :- A = ((exists X \ (atom "P" [X]) and forall X\ truth) imp (exists W\ atom "P" [W])), askolemize A B.
-test 18 A B Fms :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), askolemize A B.
+test 17 A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
+test 18 A B Fms :- A = ((exists X \ (neg (atom "P" [X])) and forall X\ (neg truth)) imp (exists W\ atom "P" [W])), myskolem A [] B Fms.
+test 19 A B Fms :- A = (forall Y \ (exists Z \ (exists X \ neg (atom "P" [Y, Z, X])))), myskolem A [] B Fms.
 
-test 19 A B Fms :- A = truth, askolemize A B.
-test 20 A B Fms :- A = (forall X \ atom "P" [X]), askolemize A B.
-test 21 A B Fms :- A = (exists X \ atom "P" [X]), askolemize A B.
+%giusti
+test 16 A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
+test 20 A B Fms :- A = (forall X \ (exists Y \ neg (atom "P" [X, Y]))), myskolem A [] B Fms.
+
+%------------------------------------test per askolemize--------------------------------%
+
+askolemizetest 21 A B :- print "askolemize P = simplify P, nnf P, myskolem P", A = truth, askolemize A B.
+askolemizetest 22 A B :- A = (exists x \ atom "F" [x]), askolemize A B.
+askolemizetest 23 A B :- A = (exists x \ atom "F" [x, var "X"]), askolemize A B.
+askolemizetest 24 A B :- A = (forall Y \ atom "P" [Y, X]), askolemize A B.
+askolemizetest 25 A B :- A = (forall Y \ exists X \ atom "P" [Y, X]), askolemize A B.
+askolemizetest 26 A B :- A = (exists X \ atom "P" [X, var "Y"]), askolemize A B.
+askolemizetest 27 A B :- A = ((forall Y \ (exists X \ (atom "P" [Y, X]))) imp (forall X \ truth)), askolemize A B.
+askolemizetest 28 A B :- A = (forall X \ truth), askolemize A B.
+askolemizetest 29 A B :- A = (exists X \ truth), askolemize A B.
+askolemizetest 30 A B :- A = ((exists Y \ (atom "F" [Y])) and truth), askolemize A B.
+askolemizetest 31 A B :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) imp (exists W\ atom "P" [W])), askolemize A B.
+askolemizetest 32 A B :- A = ((exists X \ (atom "P" [fn "F" [X]])) iff (forall Y \ (atom "Q" [fn "G" [Y]]))), askolemize A B.
+askolemizetest 33 A B :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), askolemize A B.
+
+%come per myskolem: soluzioni errate
+askolemizetest 034 A B :- A = (exists Y \ (exists X \ (atom "P" ( X :: nil)))), askolemize A B.
+askolemizetest 34 A B :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), askolemize A B.
+askolemizetest 35 A B :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), askolemize A B.
+askolemizetest 36 A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
+askolemizetest 37 A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
+
+
+
 
 
 %test per freesTm/s

@@ -4,14 +4,17 @@ kind expr type.
 type var string -> expr.
 type const int -> expr.
 type add, mul expr -> expr -> expr.
+
 type simplify1, simplify expr -> expr -> o.
-type main, example expr -> o.
+type simplify1, simplify expr -> expr -> o.
+type gensimplify (A -> A -> o) -> expr -> expr -> o.
+type closure A -> o.
 
-type simplify0 expr -> expr -> o.
-type rc, tc, rtc, nf (A -> A -> o) -> A -> A -> o.
+type main, example o -> o.
 
-type determ, reduct  (A -> A -> o) -> A -> A -> o.
+type binop (expr -> expr -> expr) -> o.
 
-type reflc (A -> A -> o) -> A -> A -> o.
+type reflc  (A -> A -> o) -> A -> A -> o.
+type rc (A -> A -> o) -> A -> A -> o.
 
 end
