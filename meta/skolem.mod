@@ -44,39 +44,37 @@ variant_aux Avoid S [] S.
 variant_aux Avoid S [S|L] S'' :- !, S' is S ^ "'", variant_aux Avoid S' Avoid S''.
 variant_aux Avoid S [_|L] S' :- variant_aux Avoid S L S'.
 
-
-
 myskolem0 truth Fms truth Fms.
 myskolem0 false Fms false Fms.
-myskolem0 (atom S Args) Fms (atom S Args) Fms.
 myskolem0 (P and Q) Fns (P' and Q') Fns' :-
-  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
+  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
 myskolem0 (P or Q) Fns (P' or Q') Fns' :-
-  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
-myskolem0 (P imp Q) Fns (P' imp Q') Fns' :-
-  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
-myskolem0 (P iff Q) Fns (P' iff Q') Fns' :-
-  myskolem0 P Fns P' Fns', myskolem0 Q Fns' Q' Fns''.
+  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
 
 myskolem0 (forall x \ P x) Fns (forall x \ P' x) Fns' :-
-  pi x \ is_var x => myskolem0 (P x) Fns (P' x) Fns'.
-myskolem0 (exists x \ P x) Fns (Q (fn S Vs)) Fns' :-
-   print "Hello",
+  pi x \ is_var x => myskolem (P x) Fns (P' x) Fns'.
+myskolem0 (exists x \ P x) Fns Q Fns' :-
+   print "Hello\n", flush std_out,
    variant "sko" Fns S,
+   print "Termine: ",
+   term_to_string (exists x \ P x) StrP, print StrP, print "\n", flush std_out,
    freesFm (exists x \ P x) Vs,
-   %%% map mkVar L Vs,
-   %%% myskolem0 (P (fn S Vs)) [S|Fns] Q Fns'.
-   pi x \ myskolem0 (P x) [S|Fns] (Q x) Fns'.
+   print "Variabili libere: ",
+   term_to_string Vs Str, print Str, print "\n", flush std_out,
+   myskolem (P (fn S Vs)) [S|Fns] Q Fns'.
 
-myskolem0 (neg A) Fns (neg A1) Fns' :- myskolem0 A Fns A1 Fns'.
+%myskolem0 (neg A) Fns (neg A1) Fns' :- myskolem0 A Fns A1 Fns'.
 %myskolem0 (forall X \ (neg (A X))) Fns (forall X \ (neg (B X))) Fns' :- myskolem0 (forall X \ (A X)) Fns (forall X \ (B X)) Fns'.
-myskolem0 (exists x \ neg (P x)) Fns (neg Q) Fns' :- myskolem0 (exists x \ P x) Fns Q Fns'.
+%myskolem0 (exists x \ neg (P x)) Fns (neg Q) Fns' :- myskolem0 (exists x \ P x) Fns Q Fns'.
 
+myskolem X Fms Y Fms':- myskolem0 X Fms Y Fms', !.
+myskolem X Fms X Fms.
 
-
+/*
 myskolem A Fms B Fms' :- reflcSkolem myskolem0 A Fms B Fms'.
 reflcSkolem R X Fms Y Fms':- R X Fms Y Fms', !.
 reflcSkolem R X Fms X Fms.
+*/
 %aggiunta per capire dove stava l'errore
 
 askolemize P Q:- simplify P P1, nnf P1 P2, myskolem P2 [] Q Fms.
@@ -91,6 +89,7 @@ freesTms [T|Ts] L :- freesTm T LT, freesTms Ts LTs, union LT LTs L.
 freesFm truth [].
 freesFm false [].
 freesFm (atom S Args) L :- freesTms Args L.
+freesFm (neg P) L :- freesFm P L.
 freesFm (P and Q) L :- freesFm P LP, freesFm Q LQ, union LP LQ L.
 freesFm (P or Q) L :- freesFm P LP, freesFm Q LQ, union LP LQ L.
 freesFm (P imp Q) L :- freesFm P LP, freesFm Q LQ, union LP LQ L.
@@ -119,6 +118,8 @@ test 14 A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), my
 test 15 A B Fms :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), myskolem A [] B Fms.
 test 17 A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
 test 18 A B Fms :- A = ((exists X \ (neg (atom "P" [X])) and forall X\ (neg truth)) imp (exists W\ atom "P" [W])), myskolem A [] B Fms.
+test 180 A B Fms :- A = (exists X \ neg (atom "P" [X])), myskolem A [] B Fms.
+test 181 A B Fms :- A = (exists X \ neg (atom "P" [Y])), myskolem A [] B Fms.
 test 19 A B Fms :- A = (forall Y \ (exists Z \ (exists X \ neg (atom "P" [Y, Z, X])))), myskolem A [] B Fms.
 
 %giusti
