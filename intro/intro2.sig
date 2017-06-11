@@ -6,5 +6,5 @@ type const int -> expr.
 type add, mul expr -> expr -> expr.
 type simplify1, simplify expr -> expr -> o.
 type main, example expr -> o.
-
+type test int -> string -> expr -> expr -> o.
 end
