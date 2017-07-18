@@ -1,6 +1,6 @@
 module testsucc.
 
-accumulate prenex.
+accumulate skolem.
 
 
 /*-------- Test for psimplify --------*/
@@ -68,7 +68,7 @@ pullquanttest 6 "it pulls out a quantifier" P Q :-  P = ((forall X \ (atom "P" [
 pullquanttest 7 "it pulls out a quantifier" P Q :-  P = ((forall X \ (atom "P" [fn "F" [X]])) or (forall Y \ (atom "Q" [fn "G" [Y]]))), pullquant P Q.
 pullquanttest 8 "it pulls out a quantifier" P Q :-  P = ((exists X \ (atom "P" [fn "F" [X]])) and (exists Y \ (atom "Q" [fn "G" [Y]]))), pullquant P Q.
 pullquanttest 9 "it pulls out a quantifier" P Q :-  P = ((exists X \ (atom "P" [fn "F" [X]])) and truth), pullquant P Q.
-%pullquanttest 10 "it pulls out a quantifier" P Q :-  P = (R and truth) (exists X \ ((atom "P" [fn "F" [X]]) and truth)).
+
 
 pqtest 0 "pullquant in a deeper level" P Q :- P = truth, pullquants P Q.
 pqtest 01 "pullquant in a deeper level" P Q :- P = (forall X \ truth), pullquants P Q.
@@ -89,9 +89,7 @@ pqtest 10 "pullquant in a deeper level" P Q :- P = ((forall X \ (atom "P" (fn "F
 pnxtest 1 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth), pnx P Q.
 pnxtest 2 "it pulls out all the quantifiers" P Q :- P = (forall X \ exists Y \ atom "=" (X :: Y :: nil)), pnx P Q.
 pnxtest 3 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))), pnx P Q.
-%A = forall (W1\ exists (W2\ truth and atom "=" (W1 :: W2 :: nil)))
-%More solutions (y/n)? y
-%A = forall (W1\ truth and exists (W2\ atom "=" (W1 :: W2 :: nil)))
+
 
 /*-------- Test for PNF --------*/
 
@@ -102,64 +100,47 @@ pnftest 4 "it applies simplify, nnf and pnx" P Q:- P = ((forall X \ (atom "P" [f
 pnftest 5 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))) imp forall X \ false), pnf P Q.
 pnftest 6 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)) and (exists Y \ (atom "P" (fn "F" (Y :: nil) :: nil)))), pnf P Q.
 
+/*--------Test for Skolem--------*/
+skolemtest 1 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = truth, myskolem A [] B Fms.
+skolemtest 2 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists x \ atom "F" [x]), myskolem A [] B Fms.
+skolemtest 3 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists x \ atom "F" [x, var "X"]), myskolem A [] B Fms.
+skolemtest 4 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall Y \ atom "P" [Y, X]), myskolem A [] B Fms.
+skolemtest 5 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall Y \ exists X \ atom "P" [Y, X]), myskolem A [] B Fms.
+skolemtest 6 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ atom "P" [X, var "Y"]), myskolem A [] B Fms.
+skolemtest 7 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((forall Y \ (exists X \ (atom "P" [Y, X]))) or (forall X \ truth and exists Y \ atom "P" [X , Y])), myskolem A [] B Fms.
+skolemtest 8 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall X \ truth), myskolem A [] B Fms.
+skolemtest 9 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ truth), myskolem A [] B Fms.
+skolemtest 10 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((exists Y \ (atom "F" [Y])) and truth), myskolem A [] B Fms.
+skolemtest 11 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) or (exists W\ atom "P" [W])), myskolem A [] B Fms.              
+skolemtest 12 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( X :: nil)))), myskolem A [] B Fms.
+skolemtest 13 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), myskolem A [] B Fms.
+skolemtest 14 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), myskolem A [] B Fms.
+skolemtest 15 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), myskolem A [] B Fms.
+skolemtest 16 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
+skolemtest 17 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
+skolemtest 18 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ neg (atom "P" [Y])), myskolem A [] B Fms.  	  	    	       	      	   	    	   	   
+skolemtest 19 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall Y \ (exists Z \ (exists X \ neg (atom "P" [Y, Z, X])))), myskolem A [] B Fms.
+skolemtest 20 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall X \ (exists Y \ neg (atom "P" [X, Y]))), myskolem A [] B Fms.
 
+%------------------------------------test per askolemize--------------------------------%
 
+askolemizetest 21 "askolemize applies simplify, nnf and skolem." A B :- A = truth, askolemize A B.
+askolemizetest 22 "askolemize applies simplify, nnf and skolem." A B :- A = (exists x \ atom "F" [x]), askolemize A B.
+askolemizetest 23 "askolemize applies simplify, nnf and skolem." A B :- A = (exists x \ atom "F" [x, var "X"]), askolemize A B.
+askolemizetest 24 "askolemize applies simplify, nnf and skolem." A B :- A = (forall Y \ atom "P" [Y, X]), askolemize A B.
+askolemizetest 25 "askolemize applies simplify, nnf and skolem." A B :- A = (forall Y \ exists X \ atom "P" [Y, X]), askolemize A B.
+askolemizetest 26 "askolemize applies simplify, nnf and skolem." A B :- A = (exists X \ atom "P" [X, var "Y"]), askolemize A B.
+askolemizetest 27 "askolemize applies simplify, nnf and skolem." A B :- A = ((forall Y \ (exists X \ (atom "P" [Y, X]))) imp (forall X \ truth)), askolemize A B.
+askolemizetest 28 "askolemize applies simplify, nnf and skolem." A B :- A = (forall X \ truth), askolemize A B.
+askolemizetest 29 "askolemize applies simplify, nnf and skolem." A B :- A = (exists X \ truth), askolemize A B.
+askolemizetest 30 "askolemize applies simplify, nnf and skolem." A B :- A = ((exists Y \ (atom "F" [Y])) and truth), askolemize A B.
+askolemizetest 31 "askolemize applies simplify, nnf and skolem." A B :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) imp (exists W\ atom "P" [W])), askolemize A B.
+askolemizetest 32 "askolemize applies simplify, nnf and skolem." A B :- A = ((exists X \ (atom "P" [fn "F" [X]])) iff (forall Y \ (atom "Q" [fn "G" [Y]]))), askolemize A B.
+askolemizetest 33 "askolemize applies simplify, nnf and skolem." A B :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), askolemize A B.
+askolemizetest 34 "askolemize applies simplify, nnf and skolem." A B :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), askolemize A B.
+askolemizetest 35 "askolemize applies simplify, nnf and skolem." A B :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), askolemize A B.
+askolemizetest 36 "askolemize applies simplify, nnf and skolem." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
+askolemizetest 37 "askolemize applies simplify, nnf and skolem." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
 
-% -------------------------------------------------------------------------
-% -------------------------------------------------------------------------
-% -------------------------------------------------------------------------
-% -------------------------------------------------------------------------
-
-simple_string N "A" :- N >= 1.
-simple_string N "B" :- N >= 2.
-simple_string N "C" :- N >= 3.
-simple_string N "D" :- N >= 4.
-simple_string N "E" :- N >= 5.
-simple_string N "F" :- N >= 6.
-
-leq N N :- N >= 0.
-leq N M :- N >= 1, N' is N - 1, leq N' M.
-
-split N M K :- leq N M, K is N - M.
-
-term N (var S) :- simple_string N S.
-term N (fn S Tms) :- split N M K, simple_string M S, terms K Tms.
-terms 0 [].
-terms N (T :: Tms) :- split N M K, term M T, terms K Tms.
-
-form N (atom S Tms) :- split N M K, simple_string M S, terms K Tms.
-form N truth :- N > 0.
-form N false :- N > 0.
-form N (neg P) :- N > 0, N' is N - 1, form N' P.
-form N (P and Q) :- N > 0, N' is N - 1, split N' M K, form M P, form K Q.
-form N (P or Q) :- N > 0, N' is N - 1, split N' M K, form M P, form K Q.
-form N (P imp Q) :- N > 0, N' is N - 1, split N' M K, form M P, form K Q.
-form N (P iff Q) :- N > 0, N' is N - 1, split N' M K, form M P, form K Q.
-form N (forall X\ P X) :- N > 0, N' is N - 1, pi X\ form N' (P X).
-form N (exists X\ P X) :- N > 0, N' is N - 1, pi X\ form N' (P X).
-
-% All subterms (including itself).
-
-subform P P.
-subform P Q :- psubform P Q.
-
-% Proper subforms
-psubform (neg P) Q :- subform P Q.
-psubform (P and Q) R :- subform P R; subform Q R. 
-psubform (P or Q) R :- subform P R; subform Q R. 
-psubform (P imp Q) R :- subform P R; subform Q R. 
-psubform (P iff Q) R :- subform P R; subform Q R. 
-psubform (forall X\ P X) Q :- pi X\ subform (P X) Q.
-psubform (exists X\ P X) Q :- pi X\ subform (P X) Q.
-
-notsimpl1 (neg truth).
-notsimpl1 (neg (neg P)).
-% ....
-
-notsimpl P :- subform P Q, notsimpl Q.
-
-testsimpl N P :- form N P, simplify P Q, notsimpl Q.
-
-testnotsimpl N P :- form N P, notsimpl P.
 
 end

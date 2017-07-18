@@ -8,12 +8,13 @@ module arith3model.
 /* ------------------------------------------------------------------------- */
 /* Domain3.                                                                   */
 /* ------------------------------------------------------------------------- */
+%QUale delle due è meglio? (funzionano entrambe)
 
 listdomain 0 (0 :: nil).
-%listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
-domain3 N :- listdomain 3 L, member N L.
+domain3 N :- listdomain 2 L, member N L.
+%domain3 N :- member N [0, 1, 2].
 
 /* ------------------------------------------------------------------------- */
 /* Addition on integers modulo 3.                                            */

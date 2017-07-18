@@ -6,12 +6,6 @@ append (X :: Xs) Ys (X :: Zs) :- append Xs Ys Zs.
 unions [] [].
 unions (X :: Xs) Ys :- unions Xs Zs, append X Zs Ys.
 
-/*
-union [] L L.
-union [Head|Tail] L1 L:- member Head L1, !, union Tail L1 L.
-union [Head|Tail] L1 [Head|L]:- union Tail L1 L.
-*/
-
 union [] L L.
 union [Head|Tail] L1 L:- insert Head L1 L2, union Tail L2 L.
 

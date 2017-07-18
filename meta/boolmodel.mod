@@ -5,6 +5,7 @@ listdomain 0 (0 :: nil).
 listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
 domainb M :- listdomain 1 L, member M L.
+%domainb M :- member M [0, 1].
 
 /*----------------disjunction----------------*/
 addb 1 1 1.

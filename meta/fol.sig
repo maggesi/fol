@@ -50,20 +50,14 @@ type model
   (string -> list A -> o) ->              /* valutazione delle relazioni */
   model A.
 
-/*
-type model
-  list A ->                               /* domain */
-  (string -> list A -> A -> o) ->         /* valutazione dei termini */
-  (string -> list A -> o) ->              /* valutazione delle relazioni */
-  model A.
-*/  
+
 /* ------------------------------------------------------------------------- */
 /* Evaluation and validity.                                                  */
 /* ------------------------------------------------------------------------- */
 
 type undefined string -> A -> o.
 
-% type domain A -> o.
+
 type termval model A -> (string -> A -> o) -> term -> A -> o.
 type holds model A -> (string -> A -> o) -> form -> o.
 

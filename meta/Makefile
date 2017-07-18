@@ -1,4 +1,5 @@
 default :testsucc.lp
+default :main.lp
 
 %.lpo : %.mod
 	tjcc $<

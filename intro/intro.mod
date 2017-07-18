@@ -1,13 +1,16 @@
 module intro.
 
-/* Definitions of two relations: reflexive closure (rc) and reflexive closure with cut (reflc) */ 
+/* Definitions of two relations: reflexive closure (rc) and reflexive closure with cut (reflc) */
+local rc (A -> A -> o) -> A -> A -> o.
 rc R X Y :- R X Y.
 rc R X X.
 
+local reflc (A -> A -> o) -> A -> A -> o.
 reflc R X Y :- R X Y, !.
 reflc R X X.
 
 /* Predicate that call addition with add and multiplication with mul */
+local binop (expr -> expr -> expr) -> o.
 binop add.
 binop mul.
 
@@ -27,6 +30,7 @@ simplifynaive (mul E1 E2) E3 :- simplifynaive E1 E1', simplifynaive E2 E2', simp
 simplifynaive E E.
 
 /* A predicate gensimplify which can be a loyal translation of Harrison's code with simplify or a less near translation without cut that is simplify' */
+local gensimplify ((A -> A -> o) -> A -> A -> o) -> expr -> expr -> o.
 gensimplify C (var X) (var X).
 gensimplify C (const X) (const X).
 gensimplify C (Op X Y) Z :- binop Op, gensimplify C X X', gensimplify C Y Y',

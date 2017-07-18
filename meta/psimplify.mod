@@ -1,5 +1,7 @@
 module psimplify.
 
+
+local psimplify2 form -> form -> o.
 psimplify2 (neg truth) false.
 psimplify2 (neg false) truth.
 psimplify2 (neg (neg P)) P.
@@ -21,9 +23,10 @@ psimplify2 (false iff false) truth.
 psimplify2 (P iff false) (neg P).
 psimplify2 (false iff P) (neg P).
 
-
+local psimplify1 form -> form -> o.
 psimplify1 P Q:- reflc psimplify2 P Q.
 
+local psimplify0 form -> form -> o.
 psimplify0 (neg P) Y:- psimplify P P1, psimplify1 (neg P1) Y.
 psimplify0 (P and Q) Y:- psimplify P P1, psimplify Q Q1, psimplify1 (P1 and Q1) Y.
 psimplify0 (P or Q) Y:- psimplify P P1, psimplify Q Q1, psimplify1 (P1 or Q1) Y.
