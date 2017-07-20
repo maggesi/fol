@@ -1,14 +1,14 @@
 module simplify.
 
 
-local simplify2 form -> A -> o.
+local simplify2 form -> form -> o.
 simplify2 (Quant X \ P) P :- (Quant = forall; Quant = exists).
 simplify2 P X:- psimplify P X.
 
-local simplify1 form -> A -> o.
+local simplify1 form -> form -> o.
 simplify1 P Q:- reflc simplify2 P Q.
 
-local simplify0 form -> A -> o.
+local simplify0 form -> form -> o.
 simplify0 (neg P) Y:- simplify P P1, simplify1 (neg P1) Y.
 simplify0 (P and Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 and Q1) Y.
 simplify0 (P or Q) Y:- simplify P P1, simplify Q Q1, simplify1 (P1 or Q1) Y.

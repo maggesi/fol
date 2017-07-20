@@ -24,7 +24,7 @@ nnftest 2 "Negation normal form (imp and iff)" P Q :- P = (truth and false), nnf
 nnftest 3 "Negation normal form (imp and iff)" P Q :- P = (false or truth), nnf P Q.
 nnftest 4 "Negation normal form (imp and iff)" P Q :- P = (false imp truth), nnf P Q.
 nnftest 5 "Negation normal form (imp and iff)" P Q :- P = ((truth imp false) or truth), nnf P Q.
-%nnftest 6 "Negation normal form (imp and iff)" P Q :- P = (Q imp truth) (truth or truth), nnf P Q.
+nnftest 6 "Negation normal form (imp and iff)" P Q :- P = ((neg (forall X \ (atom "P" [X]))) and truth), nnf P Q.
 nnftest 7 "Negation normal form (imp and iff)" P Q :-  P = ((forall X \ exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) and truth), nnf P Q.
 nnftest 8 "Negation normal form (imp and iff)" P Q :- P = (forall X \ (exists A \ (atom "P" (fn "F" (A :: nil) :: nil))) imp truth), nnf P Q.
 nnftest 9 "Negation normal form (imp and iff)" P Q :- P = (neg (neg (truth imp false))), nnf P Q.
@@ -56,7 +56,7 @@ simplifytest 11 "it drops a quantifier with false and truth" P Q:- P = ((forall 
 simplifytest 12 "it drops a quantifier with false and truth" P Q:- P = ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)), simplify P Q.
 simplifytest 13 "it drops a quantifier with false and truth" P Q:- P = (truth or (forall Y \ (atom "P" [fn "F" [X]]))), simplify P Q.
 simplifytest 14 "it drops a quantifier with false and truth" P Q:- P = (truth imp (forall Y \ (atom "P" [fn "F" [X]]))), simplify P Q.
-
+simplifytest 15 "it drops a quantifier with false and truth" P Q :- P = (forall X \ exists A \ (atom "P" (fn "F" (A :: nil) :: nil)) imp truth), simplify P Q.
 
 /*-------- Test for pullquant --------*/
 pullquanttest 1 "it pulls out a quantifier" P Q :-  P = ((forall X \ (atom "P" [fn "F" [X]])) and (forall Y \ (atom "Q" [fn "G" [Y]]))), pullquant P Q.
@@ -70,9 +70,8 @@ pullquanttest 8 "it pulls out a quantifier" P Q :-  P = ((exists X \ (atom "P" [
 pullquanttest 9 "it pulls out a quantifier" P Q :-  P = ((exists X \ (atom "P" [fn "F" [X]])) and truth), pullquant P Q.
 
 
-pqtest 0 "pullquant in a deeper level" P Q :- P = truth, pullquants P Q.
-pqtest 01 "pullquant in a deeper level" P Q :- P = (forall X \ truth), pullquants P Q.
-pqtest 1 "pullquant in a deeper level" P Q :- P = ((forall X \ truth and (atom "P" [fn "F" [X]])) and (forall Y \ false or (atom "Q" [fn "G" [Y]]))), pullquants P Q.
+pqtest 0 "pullquant in a deeper level" P Q :- P = (forall X \ truth), pullquants P Q.
+pqtest 1 "pullquant in a deeper level" P Q :- P = ((forall X \ atom "H" [X] and (atom "P" [fn "F" [X]])) and (forall Y \ atom "F" [Y] or (atom "Q" [fn "G" [Y]]))), pullquants P Q.
 pqtest 2 "pullquant in a deeper level" P Q :- P = ((forall X \ truth and (atom "P" [fn "F" [X]])) or (forall Y \ false or (atom "Q" [fn "G" [Y]]))), pullquants P Q.
 pqtest 3 "pullquant in a deeper level" P Q :- P = ((exists X \ truth and (atom "P" [fn "F" [X]])) or (exists Y \ false or (atom "Q" [fn "G" [Y]]))), pullquants P Q.
 pqtest 4 "pullquant in a deeper level" P Q :- P = ((forall X \ truth and (atom "P" [fn "F" [X]])) and (forall Y \ false or (atom "Q" [fn "G" [Y]]))), pullquants P Q.
@@ -81,7 +80,8 @@ pqtest 6 "pullquant in a deeper level" P Q :- P = ((exists X \ truth and (atom "
 pqtest 7 "pullquant in a deeper level" P Q :- P = ((exists X \ (atom "P" [fn "F" [X]])) and truth), pullquants P Q.
 pqtest 8 "pullquant in a deeper level" P Q :- P = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pullquants P Q.
 pqtest 9 "pullquant in a deeper level" P Q :- P = ((exists Y \ false) and (forall X \ truth)), pullquants P Q.
-pqtest 10 "pullquant in a deeper level" P Q :- P = ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)), pullquants P Q.
+pqtest 10 "pullquant in a deeper level" P Q :- P = ((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) and (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) or (exists X \ false and exists Y \ truth))), pullquants P Q.
+pqtest 11 "pullquant in a deeper level" P Q :- P =(forall X \ truth and forall Y \ false or exists A \ truth and exists B \ truth), pullquants P Q.
 
 /*-------- Test for prenex --------*/
 
@@ -89,7 +89,9 @@ pqtest 10 "pullquant in a deeper level" P Q :- P = ((forall X \ (atom "P" (fn "F
 pnxtest 1 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth), pnx P Q.
 pnxtest 2 "it pulls out all the quantifiers" P Q :- P = (forall X \ exists Y \ atom "=" (X :: Y :: nil)), pnx P Q.
 pnxtest 3 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))), pnx P Q.
-
+pnxtest 4 "it pulls out all the quantifiers" P Q :- P = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnx P Q.
+pnxtest 5 "it pulls out all the quantifiers" P Q :- P = (((forall X \ (atom "P" [fn "F" [X]])) or (exists Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnx P Q.
+pnxtest 6 "it applies simplify, nnf and pnx" P Q :- P = (forall X \ truth and forall Y \ false or exists A \ truth and exists B \ truth), pnx P Q.
 
 /*-------- Test for PNF --------*/
 
@@ -99,6 +101,8 @@ pnftest 3 "it applies simplify, nnf and pnx" P Q:- P = ((forall X \ truth and (e
 pnftest 4 "it applies simplify, nnf and pnx" P Q:- P = ((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))), pnf P Q.
 pnftest 5 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))) imp forall X \ false), pnf P Q.
 pnftest 6 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)) and (exists Y \ (atom "P" (fn "F" (Y :: nil) :: nil)))), pnf P Q.
+pnftest 7 "it applies simplify, nnf and pnx" P Q :- P = ((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]]))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnf P Q.
+
 
 /*--------Test for Skolem--------*/
 skolemtest 1 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = truth, myskolem A [] B Fms.
