@@ -10,6 +10,7 @@ type pnxtest int -> string -> form -> form -> o.
 type pnftest int -> string -> form -> form -> o.
 type skolemtest int -> string -> form -> form -> list string -> o.
 type askolemizetest int -> string -> form -> form -> o.
+type skolemizetest int -> string -> form -> form -> o.
 
 
 end

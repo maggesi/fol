@@ -91,7 +91,7 @@ pnxtest 2 "it pulls out all the quantifiers" P Q :- P = (forall X \ exists Y \ a
 pnxtest 3 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth and (exists Y \ atom "=" (X :: Y :: nil))), pnx P Q.
 pnxtest 4 "it pulls out all the quantifiers" P Q :- P = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnx P Q.
 pnxtest 5 "it pulls out all the quantifiers" P Q :- P = (((forall X \ (atom "P" [fn "F" [X]])) or (exists Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnx P Q.
-pnxtest 6 "it applies simplify, nnf and pnx" P Q :- P = (forall X \ truth and forall Y \ false or exists A \ truth and exists B \ truth), pnx P Q.
+pnxtest 6 "it pulls out all the quantifiers" P Q :- P = (forall X \ truth and forall Y \ false or exists A \ truth and exists B \ truth), pnx P Q.
 
 /*-------- Test for PNF --------*/
 
@@ -102,7 +102,7 @@ pnftest 4 "it applies simplify, nnf and pnx" P Q:- P = ((forall X \ (atom "P" [f
 pnftest 5 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" [fn "F" [X]]) and forall Z \ (atom "Q" [fn "H" [Z]])) or (forall Y \ (atom "R" [fn "G" [Y]]))) imp forall X \ false), pnf P Q.
 pnftest 6 "it applies simplify, nnf and pnx" P Q:- P = (((forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp truth) imp (forall X \ (atom "P" (fn "F" (X :: nil) :: nil)) imp false)) and (exists Y \ (atom "P" (fn "F" (Y :: nil) :: nil)))), pnf P Q.
 pnftest 7 "it applies simplify, nnf and pnx" P Q :- P = ((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]]))  and (exists Y \ (atom "R" [fn "G" [Y]]))), pnf P Q.
-
+pnftest 8 "it applies simplify, nnf and pnx" P Q :- P = (forall X \ truth and forall Y \ false or exists A \ truth and exists B \ truth), pnf P Q.
 
 /*--------Test for Skolem--------*/
 skolemtest 1 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = truth, myskolem A [] B Fms.
@@ -145,6 +145,9 @@ askolemizetest 34 "askolemize applies simplify, nnf and skolem." A B :- A = (exi
 askolemizetest 35 "askolemize applies simplify, nnf and skolem." A B :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), askolemize A B.
 askolemizetest 36 "askolemize applies simplify, nnf and skolem." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
 askolemizetest 37 "askolemize applies simplify, nnf and skolem." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), askolemize A B.
+
+%------------------------------------test per skolemize---------------------------------%
+skolemizetest 1 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), skolemize A B.
 
 
 end

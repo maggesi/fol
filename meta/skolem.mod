@@ -33,6 +33,10 @@ myskolem X Fms X Fms.
 
 askolemize P Q:- simplify P P1, nnf P1 P2, myskolem P2 [] Q Fms.
 
+local specialize form -> form -> o.
+specialize (forall X \ P X) (P X).
+
+skolemize P Q :- askolemize P P1, pnf P1 P2, specialize P2 Q.
 
 freesTm X [X] :- is_var X, !.
 freesTm (fn S Args) L :- freesTms Args L.
