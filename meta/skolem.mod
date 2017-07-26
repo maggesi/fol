@@ -33,8 +33,29 @@ myskolem X Fms X Fms.
 
 askolemize P Q:- simplify P P1, nnf P1 P2, myskolem P2 [] Q Fms.
 
-local specialize form -> form -> o.
-specialize (forall X \ P X) (P X).
+local specialize0 form -> form -> o.
+specialize0 (forall X \ (P X)) (P X).
+specialize0 (Quant X \ P X) B :- quant Quant, pi x \ specialize0 (Quant X \ P X) B.
+
+local specialize1 form -> form -> o.
+specialize1 A B :- reflc specialize0 A B.
+
+local specialize2 form -> form -> o.
+specialize2 (A and B) Y :- specialize A A1, specialize B B1, specialize1 (A1 and B1) Y.
+specialize2 (A or B) Y :- specialize A A1, specialize B B1, specialize1 (A1 or B1) Y.
+specialize2 (forall X \ P X) B :- pi x \ specialize (P X) B.
+
+%local specialize form -> form -> o.
+specialize A B :- reflc specialize2 A B.
+
+
+
+
+test 1 A B :- A = (forall (W1\ neg (atom "P" (_T1 :: nil)) and neg (atom "P" (fn "sko" nil :: nil)) or atom "P" (_T1 :: nil) and atom "P" (W1 :: nil))), specialize A B.
+test 2 A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil))) or forall (W1\ atom "P" (W1 :: nil))), specialize A B.
+test 3 A B :- A = (forall X \ atom "P" [X]), specialize A B.
+test 4 A B :- A = (forall X \ atom "P" [X] and exists X \  truth), specialize A B.
+
 
 skolemize P Q :- askolemize P P1, pnf P1 P2, specialize P2 Q.
 

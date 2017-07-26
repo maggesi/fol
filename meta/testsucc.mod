@@ -148,6 +148,11 @@ askolemizetest 37 "askolemize applies simplify, nnf and skolem." A B :- A = (for
 
 %------------------------------------test per skolemize---------------------------------%
 skolemizetest 1 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), skolemize A B.
-
-
+skolemizetest 2 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) iff exists (W2\ neg (atom "P" [W2]))) or forall (W1\ atom "P" (W1 :: nil))), skolemize A B.
+skolemizetest 3 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (exists (W1\ (atom "P" (W1 :: nil)) imp forall (W2\ neg (atom "P" [W2]))) or forall (W1\ atom "P" (W1 :: nil))), skolemize A B.
+skolemizetest 4 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (exists Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), skolemize A B.
+skolemizetest 5 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall X \ neg (atom "S" [X])), skolemize A B.
+skolemizetest 6 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall W1\ neg (atom "P" (W1 :: nil)) iff exists (W2\ neg (atom "P" [W2]))), skolemize A B.
+skolemizetest 7 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall W1\ neg (atom "P" (W1 :: nil)) iff exists W2\ neg (atom "P" [W2]) iff forall X \ truth), skolemize A B.
 end
+
