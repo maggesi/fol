@@ -1,9 +1,9 @@
-default : main.lp
+default : main.lp main4.lp mainb.lp
 
 %.lpo : %.mod
 	tjcc $<
 
-main.lp : main.lpo
+main.lp main4.lp mainb.lp : %.lp : %.lpo
 	tjlink $<
 
 clean :
@@ -13,8 +13,5 @@ depend : $(wildcard *.mod *.sig)
 	tjdepend $^ > .depend
 
 .PHONY : default depend clean
-
-test :
-	echo 
 
 -include .depend

@@ -1,9 +1,11 @@
 /* ========================================================================= */
-/* Tests ed esempi.                                                          */
+/* Simple tests for the language: add zero one.                              */
 /* ========================================================================= */
 
-module main.
+sig tests.
 
-accumulate interp, tests.
+accum_sig fol, interp.
+type test int -> o.
+type holds0 form -> o.
 
 end

@@ -1,16 +1,44 @@
-arith3.lpo: arith3.mod arith3.sig 
-main.lpo: main.mod main.sig interp.sig fol.sig arith3.sig
+bool.lpo: bool.mod bool.sig 
+main4.lpo: main4.mod main4.sig interp4.sig tests.sig fol.sig arith4.sig interp.sig arith3.sig
 interp.lpo: interp.mod interp.sig fol.sig arith3.sig
-fol.lpo: fol.mod fol.sig 
-main.lpo: main.mod main.sig interp.sig fol.sig arith3.sig
 arith3.lpo: arith3.mod arith3.sig 
-interp.lpo: interp.mod interp.sig fol.sig arith3.sig
+main.lpo: main.mod main.sig interp.sig tests.sig fol.sig arith3.sig
+interp4.lpo: interp4.mod interp4.sig fol.sig arith4.sig
+tests.lpo: tests.mod tests.sig interp.sig fol.sig arith3.sig
 fol.lpo: fol.mod fol.sig 
-arith3.lp: arith3.lpo 
-main.lp: main.lpo interp.lpo fol.lpo arith3.lpo
+mainb.lpo: mainb.mod mainb.sig interpb.sig tests.sig fol.sig bool.sig interp.sig arith3.sig
+arith4.lpo: arith4.mod arith4.sig 
+interpb.lpo: interpb.mod interpb.sig fol.sig bool.sig
+main4.lpo: main4.mod main4.sig interp4.sig tests.sig fol.sig arith4.sig interp.sig arith3.sig
+main.lpo: main.mod main.sig interp.sig tests.sig fol.sig arith3.sig
+arith3.lpo: arith3.mod arith3.sig 
+interp4.lpo: interp4.mod interp4.sig fol.sig arith4.sig
+tests.lpo: tests.mod tests.sig interp.sig fol.sig arith3.sig
+bool.lpo: bool.mod bool.sig 
+fol.lpo: fol.mod fol.sig 
+mainb.lpo: mainb.mod mainb.sig interpb.sig tests.sig fol.sig bool.sig interp.sig arith3.sig
+arith4.lpo: arith4.mod arith4.sig 
+interp.lpo: interp.mod interp.sig fol.sig arith3.sig
+interpb.lpo: interpb.mod interpb.sig fol.sig bool.sig
+bool.lp: bool.lpo 
+main4.lp: main4.lpo interp4.lpo tests.lpo fol.lpo arith4.lpo
 interp.lp: interp.lpo fol.lpo arith3.lpo
-fol.lp: fol.lpo 
-main.lp: main.lpo interp.lpo fol.lpo arith3.lpo
 arith3.lp: arith3.lpo 
-interp.lp: interp.lpo fol.lpo arith3.lpo
+main.lp: main.lpo interp.lpo tests.lpo fol.lpo arith3.lpo
+interp4.lp: interp4.lpo fol.lpo arith4.lpo
+tests.lp: tests.lpo 
 fol.lp: fol.lpo 
+mainb.lp: mainb.lpo interpb.lpo tests.lpo fol.lpo bool.lpo
+arith4.lp: arith4.lpo 
+interpb.lp: interpb.lpo fol.lpo bool.lpo
+main4.lp: main4.lpo interp4.lpo tests.lpo fol.lpo arith4.lpo
+main.lp: main.lpo interp.lpo tests.lpo fol.lpo arith3.lpo
+arith3.lp: arith3.lpo 
+interp4.lp: interp4.lpo fol.lpo arith4.lpo
+tests.lp: tests.lpo 
+bool.lp: bool.lpo 
+fol.lp: fol.lpo 
+mainb.lp: mainb.lpo interpb.lpo tests.lpo fol.lpo bool.lpo
+arith4.lp: arith4.lpo 
+interp.lp: interp.lpo fol.lpo arith3.lpo
+interpb.lp: interpb.lpo fol.lpo bool.lpo

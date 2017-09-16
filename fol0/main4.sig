@@ -1,9 +1,9 @@
 /* ========================================================================= */
-/* Tests ed esempi.                                                          */
+/* Tests ed esempi su arith4.                                                */
 /* ========================================================================= */
 
-module main.
+sig main4.
 
-accumulate interp, tests.
+accum_sig tests.
 
 end

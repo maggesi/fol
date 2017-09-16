@@ -1,9 +1,9 @@
 /* ========================================================================= */
-/* Tests ed esempi.                                                          */
+/* Tests ed esempi per bool.                                                 */
 /* ========================================================================= */
 
-module main.
+sig mainb.
 
-accumulate interp, tests.
+accum_sig tests.
 
 end
