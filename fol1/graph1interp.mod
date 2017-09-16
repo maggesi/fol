@@ -10,18 +10,15 @@ accumulate fol, graphmodel.
 /* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
 
-termval node0 0.
-termval node1 1.
-termval node2 2.
-termval node3 3.
+termval _ node0 0.
+termval _ node1 1.
+termval _ node2 2.
+termval _ node3 3.
 
 /* ------------------------------------------------------------------------- */
 /* Interpretation of predicates.                                             */
 /* ------------------------------------------------------------------------- */
 
-holds (edge X Y) :-
-  termval X A,
-  termval Y B,
-  (link A B; link B A).
+holds V (edge X Y) :- termval V X A, termval V Y B, (link A B; link B A).
 
 end
