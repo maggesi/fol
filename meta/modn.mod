@@ -1,7 +1,4 @@
-
 module modn.
-
-%accumulate fol, lib.
 
 listdomain 0 (0 :: nil).
 listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.

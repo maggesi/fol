@@ -12,11 +12,11 @@ unit "graph0" "graph_no_isol" ok.
 unit "graph0" "graph_conn" ko.
 
 /*
-test1 :- 
+test1 :-
   holds (model domain func0 pred0) undefined
         (atom "edge" (fn "n0" nil :: fn "n1" nil :: nil)).
 
-test2 :- 
+test2 :-
   holds (model domain func0 pred0) undefined
         (atom "edge" (fn "n1" nil :: fn "n0" nil :: nil)).
 

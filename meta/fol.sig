@@ -3,7 +3,6 @@
 /* ========================================================================= */
 
 sig fol.
-accum_sig lib.
 
 /* ------------------------------------------------------------------------- */
 /* Terms.                                                                    */
@@ -18,12 +17,9 @@ type fn string -> list term -> term.
 /* Formulas.                                                                 */
 /* ------------------------------------------------------------------------- */
 
-kind model type -> type.
-
-
 type atom string -> list term -> form.
 type truth, false form.
-type neg form -> form. 
+type neg form -> form.
 type and, or, imp, iff form -> form -> form.
 type forall, exists (term -> form) -> form.
 
@@ -32,11 +28,11 @@ infixl or 4.
 infixr imp 3.
 infixr iff 3.
 
-
 /* ------------------------------------------------------------------------- */
 /* Models.                                                                   */
 /* ------------------------------------------------------------------------- */
 
+kind model type -> type.
 
 type model
   (A -> o) ->                             /* domain */
@@ -44,16 +40,33 @@ type model
   (string -> list A -> o) ->              /*  relations' evaluation */
   model A.
 
+/* ------------------------------------------------------------------------- */
+/* Domain.                                                                   */
+/* ------------------------------------------------------------------------- */
+
+type domain model A -> A -> o.
+type domall,domex model A -> (A -> o) -> o.
 
 /* ------------------------------------------------------------------------- */
-/* Evaluation and validity.                                                  */
+/* Term evaluation.                                                          */
 /* ------------------------------------------------------------------------- */
 
-type undefined string -> A -> o.
+type undefined term -> A -> o.
+type extend term -> A -> (term -> A -> o) -> term -> A -> o.
+type functor model A -> string -> list A -> A -> o.
+type termval model A -> (term -> A -> o) -> term -> A -> o.
 
+/* ------------------------------------------------------------------------- */
+/* Interpretation of atoms.                                                  */
+/* ------------------------------------------------------------------------- */
 
-type termval model A -> (string -> A -> o) -> term -> A -> o.
-type holds model A -> (string -> A -> o) -> form -> o.
+type relation model A -> string -> list A -> o.
+
+/* ------------------------------------------------------------------------- */
+/* Interpretation of formulas.                                               */
+/* ------------------------------------------------------------------------- */
+
+type holds model A -> (term -> A -> o) -> form -> o.
 
 type use_model string -> model A -> o.
 

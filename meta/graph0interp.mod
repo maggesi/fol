@@ -23,6 +23,6 @@ pred0 "edge" (A :: B :: nil) :- link A B.
 /* Validity.                                                                 */
 /* ------------------------------------------------------------------------- */
 
-use_model "graph0" (model domain func0 pred0).
+use_model "graph0" (model node func0 pred0).
 
 end

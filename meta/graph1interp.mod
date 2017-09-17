@@ -23,6 +23,6 @@ pred1 "edge" [A, B] :- (link A B; link B A).
 /* Validity.                                                                 */
 /* ------------------------------------------------------------------------- */
 
-use_model "graph1" (model domain func1 pred1).
+use_model "graph1" (model node func1 pred1).
 
 end

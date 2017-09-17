@@ -22,7 +22,7 @@ unit "arith3" "all_inv" ko.
 /*
 inv3 :- holds (model domain3 func3 pred3) undefined
         (forall X \
-	   imp (neg (atom "=" [X, fn "zero" []])) 
+	   imp (neg (atom "=" [X, fn "zero" []]))
     	       (exists Y \ atom "=" [fn "*" [X, Y], fn "one" []])).
 
 inv3x :- holds (model domain3 func3 pred3) undefined

@@ -1,5 +1,7 @@
 module pullquants.
 
+accumulate lib.
+
 local pullquant1 form -> form -> o.
 pullquant1 ((Quant X \ P X) and (Quant Y \ Q Y)) (Quant Z \ ((P Z) and (Q Z))) :- quant Quant, !.
 pullquant1 ((Quant X \ P X) or (Quant Y \ Q Y)) (Quant Z \ ((P Z) or (Q Z))) :- quant Quant, !.

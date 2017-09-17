@@ -18,7 +18,7 @@ let nenf fm = nenf(psimplify fm);;
 */
 nenf truth truth.
 nenf false false.
-nenf (neg (and P Q)) (or P1 Q1):- nenf (neg P) P1, nenf (neg Q) Q1. 
+nenf (neg (and P Q)) (or P1 Q1):- nenf (neg P) P1, nenf (neg Q) Q1.
 nenf (neg (or P Q)) (and P1 Q1):- nenf (neg P) P1, nenf (neg Q) Q1.
 nenf (neg (imp P Q)) (and P1 Q1):- nenf P P1, nenf (neg Q) Q1.
 nenf (neg (iff P Q)) (iff P1 Q1):- nenf P P1, nenf (neg Q) Q1.
@@ -30,4 +30,4 @@ nenf (neg false) (neg false).
 nenf (neg truth) (neg truth).
 
 %let nenf fm = nenf(psimplify fm);;
-nenfrec P Y:- psimplify P P1, nenf P1 Y. 
+nenfrec P Y:- psimplify P P1, nenf P1 Y.
