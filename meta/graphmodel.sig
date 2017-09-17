@@ -4,7 +4,7 @@
 
 sig graphmodel.
 
-type domain A -> o.
+type node A -> o.
 type link int -> int -> o.
 
 end

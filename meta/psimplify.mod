@@ -1,5 +1,6 @@
 module psimplify.
 
+accumulate lib.
 
 local psimplify2 form -> form -> o.
 psimplify2 (neg truth) false.
@@ -11,10 +12,10 @@ psimplify2 (truth and P) P.
 psimplify2 (P and truth) P.
 psimplify2 (P or false) P.
 psimplify2 (false or P) P.
-psimplify2 (truth or P) truth. 
-psimplify2 (P or truth) truth. 
+psimplify2 (truth or P) truth.
+psimplify2 (P or truth) truth.
 psimplify2 (truth imp P) P.
-psimplify2 (false imp P) truth. 
+psimplify2 (false imp P) truth.
 psimplify2 (P imp false) (neg P).
 psimplify2 (P imp truth) P.
 psimplify2 (P iff truth) P.
@@ -34,5 +35,3 @@ psimplify0 (P imp Q) Y:- psimplify P P1, psimplify Q Q1, psimplify1 (P1 imp Q1) 
 psimplify0 (P iff Q) Y:- psimplify P P1, psimplify Q Q1, psimplify1 (P1 iff Q1) Y.
 
 psimplify P Q:- reflc psimplify0 P Q.
-
-

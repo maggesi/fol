@@ -1,128 +1,120 @@
-simplify.lpo: simplify.mod simplify.sig fol.sig lib.sig psimplify.sig
-graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig lib.sig
+psimplify.lpo: psimplify.mod psimplify.sig lib.sig fol.sig
+booltests.lpo: booltests.mod booltests.sig fol.sig arith3interp.sig arithtests.sig arith3model.sig lib.sig tests.sig
 arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig lib.sig
+extras.lpo: extras.mod extras.sig lib.sig
 arith4model.lpo: arith4model.mod arith4model.sig lib.sig
-prenex.lpo: prenex.mod prenex.sig lib.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig
+nenf.lpo: nenf.mod nenf.sig fol.sig
+modn.lpo: modn.mod modn.sig fol.sig
+prenex.lpo: prenex.mod prenex.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig lib.sig
 arith3model.lpo: arith3model.mod arith3model.sig lib.sig
-graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig lib.sig
-main.lpo: main.mod main.sig lib.sig fol.sig tests.sig arith3model.sig arith4model.sig arith3interp.sig arith4interp.sig arithtests.sig arith3test.sig arith4test.sig graphmodel.sig graphtests.sig graph0interp.sig graph1interp.sig graph0test.sig graph1test.sig boolmodel.sig boolinterp.sig booltests.sig
-graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig lib.sig
-arith4test.lpo: arith4test.mod arith4test.sig fol.sig arith4interp.sig arithtests.sig lib.sig arith4model.sig tests.sig
-modn.lpo: modn.mod modn.sig fol.sig lib.sig
-arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig lib.sig
-test2result.lpo: test2result.mod test2result.sig fol.sig testsucc.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig skolem.sig
-arith4interp.lpo: arith4interp.mod arith4interp.sig fol.sig arith4model.sig lib.sig
-fol.lpo: fol.mod fol.sig lib.sig
-graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig lib.sig
-skolem.lpo: skolem.mod skolem.sig prenex.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig lib.sig
-psimplify.lpo: psimplify.mod psimplify.sig fol.sig lib.sig
-booltests.lpo: booltests.mod booltests.sig fol.sig arith3interp.sig arithtests.sig lib.sig arith3model.sig tests.sig
-nenf.lpo: nenf.mod nenf.sig fol.sig lib.sig
-tests2.lpo: tests2.mod tests2.sig fol.sig lib.sig
 graphmodel.lpo: graphmodel.mod graphmodel.sig 
-arith3test.lpo: arith3test.mod arith3test.sig fol.sig arith3interp.sig arithtests.sig lib.sig arith3model.sig tests.sig
-pullquants.lpo: pullquants.mod pullquants.sig fol.sig lib.sig
+fol.lpo: fol.mod fol.sig lib.sig
+arith3test.lpo: arith3test.mod arith3test.sig fol.sig arith3interp.sig arithtests.sig arith3model.sig lib.sig tests.sig
+pullquants.lpo: pullquants.mod pullquants.sig lib.sig fol.sig
 boolinterp.lpo: boolinterp.mod boolinterp.sig fol.sig boolmodel.sig lib.sig
+arith4test.lpo: arith4test.mod arith4test.sig fol.sig arith4interp.sig arithtests.sig arith4model.sig lib.sig tests.sig
+skolem.lpo: skolem.mod skolem.sig lib.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig prenex.sig
 boolmodel.lpo: boolmodel.mod boolmodel.sig lib.sig
-tests.lpo: tests.mod tests.sig fol.sig lib.sig
+main.lpo: main.mod main.sig fol.sig tests.sig arith3model.sig arith4model.sig boolmodel.sig graphmodel.sig arith3interp.sig arith4interp.sig boolinterp.sig graph0interp.sig graph1interp.sig arithtests.sig arith3test.sig arith4test.sig booltests.sig graphtests.sig graph0test.sig graph1test.sig extras.sig lib.sig
+tests.lpo: tests.mod tests.sig fol.sig
+arith4interp.lpo: arith4interp.mod arith4interp.sig fol.sig arith4model.sig lib.sig
 nnf.lpo: nnf.mod nnf.sig fol.sig simplify.sig psimplify.sig lib.sig
-main2.lpo: main2.mod main2.sig fol.sig tests2.sig testsucc.sig test2result.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig skolem.sig
-testsucc.lpo: testsucc.mod testsucc.sig skolem.sig fol.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig
-graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig lib.sig
-lib.lpo: lib.mod lib.sig 
-arith4test.lpo: arith4test.mod arith4test.sig fol.sig arith4interp.sig arithtests.sig lib.sig arith4model.sig tests.sig
 simplify.lpo: simplify.mod simplify.sig fol.sig lib.sig psimplify.sig
-graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig lib.sig
-arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig lib.sig
-prenex.lpo: prenex.mod prenex.sig lib.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig
-arith3model.lpo: arith3model.mod arith3model.sig lib.sig
-graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig lib.sig
-test2result.lpo: test2result.mod test2result.sig fol.sig testsucc.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig skolem.sig
-graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig lib.sig
-main.lpo: main.mod main.sig lib.sig fol.sig tests.sig arith3model.sig arith4model.sig arith3interp.sig arith4interp.sig arithtests.sig arith3test.sig arith4test.sig graphmodel.sig graphtests.sig graph0interp.sig graph1interp.sig graph0test.sig graph1test.sig boolmodel.sig boolinterp.sig booltests.sig
-arith4interp.lpo: arith4interp.mod arith4interp.sig fol.sig arith4model.sig lib.sig
-arith4model.lpo: arith4model.mod arith4model.sig lib.sig
-arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig lib.sig
-psimplify.lpo: psimplify.mod psimplify.sig fol.sig lib.sig
-booltests.lpo: booltests.mod booltests.sig fol.sig arith3interp.sig arithtests.sig lib.sig arith3model.sig tests.sig
-nenf.lpo: nenf.mod nenf.sig fol.sig lib.sig
-tests2.lpo: tests2.mod tests2.sig fol.sig lib.sig
-tests.lpo: tests.mod tests.sig fol.sig lib.sig
-graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig lib.sig
-graphmodel.lpo: graphmodel.mod graphmodel.sig 
-arith3test.lpo: arith3test.mod arith3test.sig fol.sig arith3interp.sig arithtests.sig lib.sig arith3model.sig tests.sig
-pullquants.lpo: pullquants.mod pullquants.sig fol.sig lib.sig
-boolinterp.lpo: boolinterp.mod boolinterp.sig fol.sig boolmodel.sig lib.sig
-boolmodel.lpo: boolmodel.mod boolmodel.sig lib.sig
-modn.lpo: modn.mod modn.sig fol.sig lib.sig
-skolem.lpo: skolem.mod skolem.sig prenex.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig lib.sig
-nnf.lpo: nnf.mod nnf.sig fol.sig simplify.sig psimplify.sig lib.sig
-fol.lpo: fol.mod fol.sig lib.sig
-main2.lpo: main2.mod main2.sig fol.sig tests2.sig testsucc.sig test2result.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig skolem.sig
-testsucc.lpo: testsucc.mod testsucc.sig skolem.sig fol.sig lib.sig psimplify.sig nnf.sig simplify.sig pullquants.sig prenex.sig
-graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig lib.sig
+arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig
+graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
+testsucc.lpo: testsucc.mod testsucc.sig skolem.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig prenex.sig lib.sig
+graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig
+graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig
+graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig
+graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig
 lib.lpo: lib.mod lib.sig 
-simplify.lp: simplify.lpo 
-graph0interp.lp: graph0interp.lpo 
-arith3interp.lp: arith3interp.lpo 
-arith4model.lp: arith4model.lpo 
-prenex.lp: prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
-arith3model.lp: arith3model.lpo 
-graphtests.lp: graphtests.lpo 
-main.lp: main.lpo lib.lpo fol.lpo tests.lpo arith3model.lpo arith4model.lpo arith3interp.lpo arith4interp.lpo arithtests.lpo arith3test.lpo arith4test.lpo graphmodel.lpo graphtests.lpo graph0interp.lpo graph1interp.lpo graph0test.lpo graph1test.lpo boolmodel.lpo boolinterp.lpo booltests.lpo
-graph1interp.lp: graph1interp.lpo 
-arith4test.lp: arith4test.lpo 
-modn.lp: modn.lpo 
-arithtests.lp: arithtests.lpo 
-test2result.lp: test2result.lpo 
-arith4interp.lp: arith4interp.lpo 
-fol.lp: fol.lpo 
-graph0test.lp: graph0test.lpo 
-skolem.lp: skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
-psimplify.lp: psimplify.lpo 
+arith4test.lpo: arith4test.mod arith4test.sig fol.sig arith4interp.sig arithtests.sig arith4model.sig lib.sig tests.sig
+psimplify.lpo: psimplify.mod psimplify.sig lib.sig fol.sig
+simplify.lpo: simplify.mod simplify.sig fol.sig lib.sig psimplify.sig
+graph0interp.lpo: graph0interp.mod graph0interp.sig fol.sig graphmodel.sig
+booltests.lpo: booltests.mod booltests.sig fol.sig arith3interp.sig arithtests.sig arith3model.sig lib.sig tests.sig
+arith3interp.lpo: arith3interp.mod arith3interp.sig fol.sig arith3model.sig lib.sig
+extras.lpo: extras.mod extras.sig lib.sig
+prenex.lpo: prenex.mod prenex.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig lib.sig
+arith3model.lpo: arith3model.mod arith3model.sig lib.sig
+lib.lpo: lib.mod lib.sig 
+graphmodel.lpo: graphmodel.mod graphmodel.sig 
+nenf.lpo: nenf.mod nenf.sig fol.sig
+graphtests.lpo: graphtests.mod graphtests.sig fol.sig tests.sig
+arith3test.lpo: arith3test.mod arith3test.sig fol.sig arith3interp.sig arithtests.sig arith3model.sig lib.sig tests.sig
+boolinterp.lpo: boolinterp.mod boolinterp.sig fol.sig boolmodel.sig lib.sig
+main.lpo: main.mod main.sig fol.sig tests.sig arith3model.sig arith4model.sig boolmodel.sig graphmodel.sig arith3interp.sig arith4interp.sig boolinterp.sig graph0interp.sig graph1interp.sig arithtests.sig arith3test.sig arith4test.sig booltests.sig graphtests.sig graph0test.sig graph1test.sig extras.sig lib.sig
+modn.lpo: modn.mod modn.sig fol.sig
+tests.lpo: tests.mod tests.sig fol.sig
+arith4interp.lpo: arith4interp.mod arith4interp.sig fol.sig arith4model.sig lib.sig
+pullquants.lpo: pullquants.mod pullquants.sig lib.sig fol.sig
+skolem.lpo: skolem.mod skolem.sig lib.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig prenex.sig
+arith4model.lpo: arith4model.mod arith4model.sig lib.sig
+fol.lpo: fol.mod fol.sig lib.sig
+arithtests.lpo: arithtests.mod arithtests.sig fol.sig tests.sig
+boolmodel.lpo: boolmodel.mod boolmodel.sig lib.sig
+nnf.lpo: nnf.mod nnf.sig fol.sig simplify.sig psimplify.sig lib.sig
+graph1interp.lpo: graph1interp.mod graph1interp.sig fol.sig graphmodel.sig
+testsucc.lpo: testsucc.mod testsucc.sig skolem.sig simplify.sig psimplify.sig fol.sig pullquants.sig nnf.sig prenex.sig lib.sig
+graph1test.lpo: graph1test.mod graph1test.sig graph1interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig
+graph0test.lpo: graph0test.mod graph0test.sig graph0interp.sig graphtests.sig tests.sig fol.sig graphmodel.sig
+psimplify.lp: psimplify.lpo lib.lpo
 booltests.lp: booltests.lpo 
+arith3interp.lp: arith3interp.lpo 
+extras.lp: extras.lpo 
+arith4model.lp: arith4model.lpo 
 nenf.lp: nenf.lpo 
-tests2.lp: tests2.lpo 
+modn.lp: modn.lpo 
+prenex.lp: prenex.lpo 
+arith3model.lp: arith3model.lpo 
 graphmodel.lp: graphmodel.lpo 
+fol.lp: fol.lpo lib.lpo
 arith3test.lp: arith3test.lpo 
-pullquants.lp: pullquants.lpo 
+pullquants.lp: pullquants.lpo lib.lpo
 boolinterp.lp: boolinterp.lpo 
+arith4test.lp: arith4test.lpo 
+skolem.lp: skolem.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo prenex.lpo
 boolmodel.lp: boolmodel.lpo 
+main.lp: main.lpo fol.lpo tests.lpo arith3model.lpo arith4model.lpo boolmodel.lpo graphmodel.lpo arith3interp.lpo arith4interp.lpo boolinterp.lpo graph0interp.lpo graph1interp.lpo arithtests.lpo arith3test.lpo arith4test.lpo booltests.lpo graphtests.lpo graph0test.lpo graph1test.lpo extras.lpo lib.lpo
 tests.lp: tests.lpo 
+arith4interp.lp: arith4interp.lpo 
 nnf.lp: nnf.lpo 
-main2.lp: main2.lpo fol.lpo tests2.lpo testsucc.lpo test2result.lpo skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo pullquants.lpo nnf.lpo
-testsucc.lp: testsucc.lpo skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
+simplify.lp: simplify.lpo 
+arithtests.lp: arithtests.lpo 
+graph1interp.lp: graph1interp.lpo 
+testsucc.lp: testsucc.lpo skolem.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo prenex.lpo
 graph1test.lp: graph1test.lpo 
+graphtests.lp: graphtests.lpo 
+graph0test.lp: graph0test.lpo 
+graph0interp.lp: graph0interp.lpo 
 lib.lp: lib.lpo 
 arith4test.lp: arith4test.lpo 
+psimplify.lp: psimplify.lpo lib.lpo
 simplify.lp: simplify.lpo 
 graph0interp.lp: graph0interp.lpo 
-arith3interp.lp: arith3interp.lpo 
-prenex.lp: prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
-arith3model.lp: arith3model.lpo 
-graph1interp.lp: graph1interp.lpo 
-test2result.lp: test2result.lpo 
-graphtests.lp: graphtests.lpo 
-main.lp: main.lpo lib.lpo fol.lpo tests.lpo arith3model.lpo arith4model.lpo arith3interp.lpo arith4interp.lpo arithtests.lpo arith3test.lpo arith4test.lpo graphmodel.lpo graphtests.lpo graph0interp.lpo graph1interp.lpo graph0test.lpo graph1test.lpo boolmodel.lpo boolinterp.lpo booltests.lpo
-arith4interp.lp: arith4interp.lpo 
-arith4model.lp: arith4model.lpo 
-arithtests.lp: arithtests.lpo 
-psimplify.lp: psimplify.lpo 
 booltests.lp: booltests.lpo 
-nenf.lp: nenf.lpo 
-tests2.lp: tests2.lpo 
-tests.lp: tests.lpo 
-graph0test.lp: graph0test.lpo 
-graphmodel.lp: graphmodel.lpo 
-arith3test.lp: arith3test.lpo 
-pullquants.lp: pullquants.lpo 
-boolinterp.lp: boolinterp.lpo 
-boolmodel.lp: boolmodel.lpo 
-modn.lp: modn.lpo 
-skolem.lp: skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
-nnf.lp: nnf.lpo 
-fol.lp: fol.lpo 
-main2.lp: main2.lpo fol.lpo tests2.lpo testsucc.lpo test2result.lpo skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo pullquants.lpo nnf.lpo
-testsucc.lp: testsucc.lpo skolem.lpo prenex.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo
-graph1test.lp: graph1test.lpo 
+arith3interp.lp: arith3interp.lpo 
+extras.lp: extras.lpo 
+prenex.lp: prenex.lpo 
+arith3model.lp: arith3model.lpo 
 lib.lp: lib.lpo 
+graphmodel.lp: graphmodel.lpo 
+nenf.lp: nenf.lpo 
+graphtests.lp: graphtests.lpo 
+arith3test.lp: arith3test.lpo 
+boolinterp.lp: boolinterp.lpo 
+main.lp: main.lpo fol.lpo tests.lpo arith3model.lpo arith4model.lpo boolmodel.lpo graphmodel.lpo arith3interp.lpo arith4interp.lpo boolinterp.lpo graph0interp.lpo graph1interp.lpo arithtests.lpo arith3test.lpo arith4test.lpo booltests.lpo graphtests.lpo graph0test.lpo graph1test.lpo extras.lpo lib.lpo
+modn.lp: modn.lpo 
+tests.lp: tests.lpo 
+arith4interp.lp: arith4interp.lpo 
+pullquants.lp: pullquants.lpo lib.lpo
+skolem.lp: skolem.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo prenex.lpo
+arith4model.lp: arith4model.lpo 
+fol.lp: fol.lpo lib.lpo
+arithtests.lp: arithtests.lpo 
+boolmodel.lp: boolmodel.lpo 
+nnf.lp: nnf.lpo 
+graph1interp.lp: graph1interp.lpo 
+testsucc.lp: testsucc.lpo skolem.lpo lib.lpo simplify.lpo psimplify.lpo fol.lpo pullquants.lpo nnf.lpo prenex.lpo
+graph1test.lp: graph1test.lpo 
+graph0test.lp: graph0test.lpo 

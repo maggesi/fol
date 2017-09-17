@@ -41,51 +41,39 @@ termval (add X Y) P :- termval X M, termval Y N, add3 M N P.
 holds truth.
 holds (eq X Y) :- termval X M, termval Y N, M = N.
 holds (and P Q) :- holds P, holds Q.
-holds (exists x \ P x) :-
-  domain N,
-  pi x \ termval x N => holds (P x).
-holds (forall x \ P x) :-
-  domain N,
-  (pi x \ termval x N => not (holds (P x))),
-  !, fail.
-holds (forall x \ P x).
-
-/* NB: Le ultime tre clausole sono equivalenti alle seguenti due. */
-/*
 holds (exists x \ P x) :- pi x \ ((termval x 0 => holds (P x));
                                   (termval x 1 => holds (P x));
                                   (termval x 2 => holds (P x))).
 holds (forall x \ P x) :- pi x \ ((termval x 0 => holds (P x)),
                                   (termval x 1 => holds (P x)),
                                   (termval x 2 => holds (P x))).
-*/
 
 /* ------------------------------------------------------------------------- */
 /* Tests ed esempi.                                                          */
 /* ------------------------------------------------------------------------- */
 
-test0 :- holds (forall X \ truth).
-test1 :- holds (forall X \ false).
-test2 :- holds (exists X \ truth).
-test3 :- holds (exists X \ false).
+test 0 :- holds (forall X \ truth).
+test 1 :- holds (forall X \ false).
+test 2 :- holds (exists X \ truth).
+test 3 :- holds (exists X \ false).
 
 % Tutti gli elmenti sono idempotenti.
-test4 :- holds (forall X \ eq (add X X) X).
+test 4 :- holds (forall X \ eq (add X X) X).
 
 % Esiste un elemento idempotente.
-test5 :- holds (exists X \ eq (add X X) X).
+test 5 :- holds (exists X \ eq (add X X) X).
 
 % Proprietà commutativa.
-test6 :- holds (forall X \ forall Y \ eq (add X Y) (add Y X)).
+test 6 :- holds (forall X \ forall Y \ eq (add X Y) (add Y X)).
 
 % Esiste un elemento neutro.
-test7 :- holds (exists E \ forall X \
+test 7 :- holds (exists E \ forall X \
                   and (eq (add X E) X) (eq (add E X) X)).
 
 % Esiste un elemento assorbente.
-test8 :- holds (exists Z \ forall X \ eq (add X Z) Z).
+test 8 :- holds (exists Z \ forall X \ eq (add X Z) Z).
 
 % Tutti gli elmenti hanno ordine 3.
-test9 :- holds (forall X \ eq (add X (add X X)) zero).
+test 9 :- holds (forall X \ eq (add X (add X X)) zero).
 
 end

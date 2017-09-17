@@ -1,13 +1,11 @@
-default :testsucc.lp
-default :main.lp
+default : main.lp testsucc.lp arith3test.lp arith4test.lp \
+  booltests.lp graph0test.lp graph1test.lp
 
 %.lpo : %.mod
 	tjcc $<
 
-
-
-
-testsucc.lp : %.lp : %.lpo
+main.lp testsucc.lp arith3test.lp arith4test.lp \
+  booltests.lp graph0test.lp graph1test.lp : %.lp : %.lpo
 	tjlink $<
 
 clean :
@@ -17,8 +15,5 @@ depend : $(wildcard *.mod *.sig)
 	tjdepend $^ > .depend
 
 .PHONY : default depend clean
-
-test :
-	echo 
 
 -include .depend

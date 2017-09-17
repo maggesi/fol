@@ -2,8 +2,8 @@
 /* Tests ed esempi.                                                          */
 /* ========================================================================= */
 
-module main.
+module main4.
 
-accumulate interp, tests.
+accumulate interp4, tests.
 
 end

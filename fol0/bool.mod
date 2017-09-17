@@ -1,11 +1,14 @@
+/* ========================================================================= */
+/* Model: Logical conjunction as addiction.                                  */
+/* ========================================================================= */
+
 module bool.
 
-domain 0.
-domain 1.
+domain ff.
+domain tt.
 
-addb 1 1 1.
-addb 1 0 1.
-addb 0 1 1.
-addb 0 0 0.
+addb tt X tt :- domain X.
+addb X tt tt :- domain X.
+addb ff ff ff.
 
-end
+end.

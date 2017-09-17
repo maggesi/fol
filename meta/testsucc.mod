@@ -115,14 +115,14 @@ skolemtest 7 "skolem substitute the existential quantifier with a function sko" 
 skolemtest 8 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall X \ truth), myskolem A [] B Fms.
 skolemtest 9 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ truth), myskolem A [] B Fms.
 skolemtest 10 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((exists Y \ (atom "F" [Y])) and truth), myskolem A [] B Fms.
-skolemtest 11 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) or (exists W\ atom "P" [W])), myskolem A [] B Fms.              
+skolemtest 11 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = ((exists X \ (atom "P" (X :: nil)) and forall X\ truth) or (exists W\ atom "P" [W])), myskolem A [] B Fms.
 skolemtest 12 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( X :: nil)))), myskolem A [] B Fms.
 skolemtest 13 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (((forall X \ (atom "P" [fn "F" [X]])) or (forall Z \ (atom "Q" [fn "H" [Z]])))  and (exists Y \ (atom "R" [fn "G" [Y]]))), myskolem A [] B Fms.
 skolemtest 14 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists X \ (atom "P" ( Y :: X :: nil)))), myskolem A [] B Fms.
 skolemtest 15 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists Y \ (exists Z \ (exists X \ atom "P" [Y, Z, X]))), myskolem A [] B Fms.
 skolemtest 16 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg truth)) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
 skolemtest 17 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall (W1\ neg (atom "P" (W1 :: nil)) or exists (W2\ neg (atom "P" [W2]))) or exists (W1\ atom "P" (W1 :: nil))), myskolem A [] B Fms.
-skolemtest 18 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ neg (atom "P" [Y])), myskolem A [] B Fms.  	  	    	       	      	   	    	   	   
+skolemtest 18 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (exists X \ neg (atom "P" [Y])), myskolem A [] B Fms.
 skolemtest 19 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall Y \ (exists Z \ (exists X \ neg (atom "P" [Y, Z, X])))), myskolem A [] B Fms.
 skolemtest 20 "skolem substitute the existential quantifier with a function sko" A B Fms :- A = (forall X \ (exists Y \ neg (atom "P" [X, Y]))), myskolem A [] B Fms.
 
@@ -155,4 +155,3 @@ skolemizetest 5 "skolemize applies askolemize, pnf and it eliminates the univers
 skolemizetest 6 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall W1\ neg (atom "P" (W1 :: nil)) iff exists (W2\ neg (atom "P" [W2]))), skolemize A B.
 skolemizetest 7 "skolemize applies askolemize, pnf and it eliminates the universal quantification." A B :- A = (forall W1\ neg (atom "P" (W1 :: nil)) iff exists W2\ neg (atom "P" [W2]) iff forall X \ truth), skolemize A B.
 end
-

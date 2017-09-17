@@ -15,11 +15,24 @@ type and form -> form -> form.
 type forall, exists (term -> form) -> form.
 
 /* ------------------------------------------------------------------------- */
-/* Evaluation and validity.                                                  */
+/* Domain.                                                                   */
 /* ------------------------------------------------------------------------- */
 
 type domain A -> o.
-type termval term -> A -> o.
-type holds form -> o.
+type all,ex (A -> o) -> o.
+
+/* ------------------------------------------------------------------------- */
+/* Term evaluation.                                                          */
+/* ------------------------------------------------------------------------- */
+
+type emptyenv term -> A -> o.
+type extend term -> A -> (term -> A -> o) -> term -> A -> o.
+type termval (term -> A -> o) -> term -> A -> o.
+
+/* ------------------------------------------------------------------------- */
+/* Interpretation of formulas.                                               */
+/* ------------------------------------------------------------------------- */
+
+type holds (term -> A) -> form -> o.
 
 end

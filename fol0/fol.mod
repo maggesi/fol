@@ -2,17 +2,36 @@
 /* Semantics for first order logic.                                          */
 /* ========================================================================= */
 
+/* ------------------------------------------------------------------------- */
+/* This module assumes that the evaluation for terms (predicates termval     */
+/* and domain) are defined elsewhere.                                        */
+/* ------------------------------------------------------------------------- */
+
 module fol.
 
-holds truth.
-holds (and P Q) :- holds P, holds Q.
-holds (exists x \ P x) :-
-  domain N,
-  pi x \ termval x N => holds (P x).
-holds (forall x \ P x) :-
-  domain N,
-  (pi x \ termval x N => not (holds (P x))),
-  !, fail.
-holds (forall x \ P x).
+/* ------------------------------------------------------------------------- */
+/* Domain.                                                                   */
+/* ------------------------------------------------------------------------- */
+
+ex  P :- sigma A \ domain A, P A, !.
+all P :- not (ex (A \ not(P A))).
+
+/* ------------------------------------------------------------------------- */
+/* Term evaluation.                                                          */
+/* ------------------------------------------------------------------------- */
+
+extend X A _ X A.
+extend _ _ V X A :- V X A.
+
+termval V X A :- V X A.
+
+/* ------------------------------------------------------------------------- */
+/* Interpretation of formulas.                                               */
+/* ------------------------------------------------------------------------- */
+
+holds _ truth.
+holds V (and P Q)  :- holds V P, holds V Q.
+holds V (exists P) :- pi x \  ex (A \ holds (extend x A V) (P x)).
+holds V (forall P) :- pi x \ all (A \ holds (extend x A V) (P x)).
 
 end
