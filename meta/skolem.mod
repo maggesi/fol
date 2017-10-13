@@ -13,25 +13,25 @@ variant_aux Avoid S [] S.
 variant_aux Avoid S [S|L] S'' :- !, S' is S ^ "'", variant_aux Avoid S' Avoid S''.
 variant_aux Avoid S [_|L] S' :- variant_aux Avoid S L S'.
 
-local myskolem0 form -> list string -> form -> list string -> o.
-myskolem0 truth Fms truth Fms.
-myskolem0 false Fms false Fms.
-myskolem0 (P and Q) Fns (P' and Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
-myskolem0 (P or Q) Fns (P' or Q') Fns' :-
-  myskolem P Fns P' Fns', myskolem Q Fns' Q' Fns''.
-myskolem0 (forall x \ P x) Fns (forall x \ P' x) Fns' :-
-  pi x \ is_var x => myskolem (P x) Fns (P' x) Fns'.
-myskolem0 (exists x \ P x) Fns Q Fns' :-
+local skolem0 form -> list string -> form -> list string -> o.
+skolem0 truth Fms truth Fms.
+skolem0 false Fms false Fms.
+skolem0 (P and Q) Fns (P' and Q') Fns' :-
+  skolem P Fns P' Fns', skolem Q Fns' Q' Fns''.
+skolem0 (P or Q) Fns (P' or Q') Fns' :-
+  skolem P Fns P' Fns', skolem Q Fns' Q' Fns''.
+skolem0 (forall x \ P x) Fns (forall x \ P' x) Fns' :-
+  pi x \ is_var x => skolem (P x) Fns (P' x) Fns'.
+skolem0 (exists x \ P x) Fns Q Fns' :-
    variant "sko" Fns S,
    freesFm (exists x \ P x) Vs,
-   myskolem (P (fn S Vs)) [S|Fns] Q Fns'.
+   skolem (P (fn S Vs)) [S|Fns] Q Fns'.
 
 
-myskolem X Fms Y Fms':- myskolem0 X Fms Y Fms', !.
-myskolem X Fms X Fms.
+skolem X Fms Y Fms':- skolem0 X Fms Y Fms', !.
+skolem X Fms X Fms.
 
-askolemize P Q:- simplify P P1, nnf P1 P2, myskolem P2 [] Q Fms.
+askolemize P Q:- simplify P P1, nnf P1 P2, skolem P2 [] Q Fms.
 
 local specialize0 form -> form -> o.
 specialize0 (forall X \ (P X)) (P X).
@@ -45,7 +45,7 @@ specialize2 (A and B) Y :- specialize A A1, specialize B B1, specialize1 (A1 and
 specialize2 (A or B) Y :- specialize A A1, specialize B B1, specialize1 (A1 or B1) Y.
 specialize2 (forall X \ P X) B :- pi x \ specialize (P X) B.
 
-%local specialize form -> form -> o.
+
 specialize A B :- reflc specialize2 A B.
 
 

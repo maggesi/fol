@@ -37,19 +37,6 @@ holds M V (forall x \ P x) :-
   (pi x \ termval M V x A => not (holds M V (P x))),
   !, fail.
 holds _M _V (forall x \ _P x).
-/*
-holds M V (exists x \ P x) :-
-  M = model Domain _ _,
-  member A Domain,
-  pi x \ termval M V x A => holds M V (P x).
-holds M V (forall x \ P x) :-
-  M = model Domain _ _,
-  member A Domain,
-  (pi x \ termval M V x A => not (holds M V (P x))),
-  !, fail.
-holds _M _V (forall x \ _P x).
-
-*/
 
 
 end

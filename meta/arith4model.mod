@@ -2,11 +2,11 @@ module arith4model.
 
 
 listdomain 0 (0 :: nil).
-%listdomain N (N :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
+
 listdomain N (N1 :: Tail) :- N > 0, N1 is N - 1, listdomain N1 Tail.
 
 domain4 N :- listdomain 3 L, member N L.
-%domain4 N :- member N [0, 1, 2, 3].
+
 
 
 add4 0 N N :- domain4 N.

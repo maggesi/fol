@@ -50,16 +50,6 @@ holds (forall x \ P x) :-
   !, fail.
 holds (forall x \ P x).
 
-/* NB: Le ultime tre clausole sono equivalenti alle seguenti due. */
-/*
-holds (exists x \ P x) :- pi x \ ((termval x 0 => holds (P x));
-                                  (termval x 1 => holds (P x));
-                                  (termval x 2 => holds (P x))).
-holds (forall x \ P x) :- pi x \ ((termval x 0 => holds (P x)),
-                                  (termval x 1 => holds (P x)),
-                                  (termval x 2 => holds (P x))).
-*/
-
 /* ------------------------------------------------------------------------- */
 /* Tests ed esempi.                                                          */
 /* ------------------------------------------------------------------------- */

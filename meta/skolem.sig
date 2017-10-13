@@ -7,7 +7,7 @@ type freesTm term -> list term -> o.
 type freesTms list term -> list term -> o.
 type freesFm form -> list term -> o.
 
-type myskolem form -> list string -> form -> list string -> o.
+type skolem form -> list string -> form -> list string -> o.
 
 type askolemize form -> form -> o.
 
