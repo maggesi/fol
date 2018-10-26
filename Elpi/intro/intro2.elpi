@@ -1,0 +1,88 @@
+%%% ===========================================================================
+%%% Chapter Introduction.
+%%% ===========================================================================
+
+%% ----------------------------------------------------------------------------
+%% Debug.
+%% ----------------------------------------------------------------------------
+
+spy P :- print "entering" P, (P, print "exit" P ; print "fail" P, fail).
+
+%% ----------------------------------------------------------------------------
+%% A simple algebraic type for expressions.
+%% ----------------------------------------------------------------------------
+
+kind expr       type.
+type const      int -> expr.
+type add, mul   expr -> expr -> expr.
+
+%% ----------------------------------------------------------------------------
+%% One step of symplification.
+%% ----------------------------------------------------------------------------
+
+pred simplify1 i:expr, o:expr.
+simplify1 (add (const M) (const N)) (const P) :- !, P is M + N.
+simplify1 (mul (const M) (const N)) (const P) :- !, P is M * N.
+simplify1 (add (const 0) X) X :- !.
+simplify1 (add X (const 0)) X :- !.
+simplify1 (mul (const 0) _) (const 0) :- !.
+simplify1 (mul _ (const 0)) (const 0) :- !.
+simplify1 (mul (const 1) X) X :- !.
+simplify1 (mul X (const 1)) X :- !.
+simplify1 X X.
+
+%% ----------------------------------------------------------------------------
+%% Main simplification function.
+%% ----------------------------------------------------------------------------
+
+pred simplify i:expr, o:expr.
+simplify (add X Y) Z :- !, simplify1 (add {simplify X} {simplify Y}) Z.
+simplify (mul X Y) Z :- !, simplify1 (mul {simplify X} {simplify Y}) Z.
+simplify X X.
+
+%% ----------------------------------------------------------------------------
+%% Testing framework.
+%% ----------------------------------------------------------------------------
+
+pred basic_term o:expr.
+basic_term (const 0).
+basic_term (const 1).
+basic_term (const 2).
+basic_term V_.
+
+pred binop o:(expr -> (expr -> expr)).
+binop add.
+binop mul.
+
+%% Generates terms of depth precisely N.
+pred simp_term i:int, o:expr.
+simp_term N _X :- N < 0, !, fail.
+simp_term 0 X :- !, basic_term X.
+simp_term N (F A B) :-
+  M is N - 1, binop F,
+  (P is M - 1, genterm P A, simp_term M B;
+   simp_term M B, genterm M A).
+
+%% Generates terms of depth less or equal than N.
+pred genterm i:int, o:expr.
+genterm N _X :- N < 0, !, fail.
+genterm N X :- M is N - 1, genterm M X.
+genterm N X :- simp_term N X.
+
+%% Run some tests.
+pred test i:int, o:expr, o:expr.
+test N In Out :- genterm N In, simplify In Out.
+
+pred terms i:int.
+terms N :- genterm N X, print X, fail.
+terms _N.
+
+
+%% Print some tests
+pred main.
+main :-
+  genterm 2 X,
+  simplify X Y,
+  print [X,Y],
+  fail.
+main.
