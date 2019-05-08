@@ -6,35 +6,10 @@
 %% Debug.
 %% ----------------------------------------------------------------------------
 
-%spy P :- !, P.
 spy P :-
   print "entering" P,
   (P, print "exit" P;
    print "fail" P, fail).
-
-spyMsg _S P :- !, P.
-spyMsg S P :-
-  print S "entering" P,
-  (P, print S "exit" P;
-   print S "fail" P, fail).
-
-%% ----------------------------------------------------------------------------
-%% Lists.
-%% ----------------------------------------------------------------------------
-
-mem X [X|_].
-mem X [_|Xs] :- mem X Xs.
-
-partition [] [] [].
-partition [X|Xs] [X|Ys] Zs :- partition Xs Ys Zs.
-partition [X|Xs] Ys [X|Zs] :- partition Xs Ys Zs.
-
-remove _X [] [].
-remove X [X|Xs] Ys :- !, remove X Xs Ys.
-remove X [Y|Xs] [Y|Ys] :- remove X Xs Ys.
-
-subtract Xs [] Xs.
-subtract Xs [Y|Ys] Zs :- spy(remove Y Xs Xs1), spy(subtract Xs1 Ys Zs).
 
 %% ----------------------------------------------------------------------------
 %% A simple algebraic type for expressions.
@@ -69,46 +44,15 @@ simplify (mul X Y) Z :- !, simplify1 (mul {simplify X} {simplify Y}) Z.
 simplify X X.
 
 %% ----------------------------------------------------------------------------
-%% Testing framework.
+%% Tests.
 %% ----------------------------------------------------------------------------
 
-pred basic_term o:expr.
-basic_term X :- mem X [const 0,const 1,const 2].
+test In Out :-
+  N is 0 - 2,
+  In = mul (add (const 6) (mul (const N) (const 3))) X_,
+  simplify In Out.
 
-pred binop o:(expr -> expr -> expr).
-binop add.
-binop mul.
-
-pred simp_term i:int, i:list expr, i:list expr, o:expr.
-pred genterm i:int, i:list expr, i:list expr, o:expr.
-     
-simp_term N _Cs _Ks _X :- N < 0, !, fail.
-simp_term 0 [] Ks X :- !, (basic_term X; mem X Ks).
-simp_term 0 [X] _Ks X :- !.
-simp_term N Cs Ks X :- M is N - 1, spyMsg "1" (simp_term M [C|Cs] [C|Ks] X).
-simp_term N Cs Ks (F A B) :-
-  M is N - 1, binop F, partition Cs ACs BCs,
-  (simp_term M ACs Ks A, spyMsg "3" (genterm M BCs Ks B);
-   P is M - 1, genterm P ACs Ks A, spyMsg "5" (simp_term M BCs Ks B)).
-
-genterm N _Cs _Ks _X :- N < 0, !, fail.
-genterm N Cs Ks X :-
-  M is N - 1, genterm M Cs Ks X;
-  simp_term N Cs Ks X.
-
-%% Run some tests.
-pred test i:int, o:expr, o:expr.
-test N In Out :- genterm N [] [] In, simplify In Out.
-
-pred terms i:int.
-terms N :- genterm N [] [] X, print X, fail.
-terms _N.
-
-%% Print some tests
-pred main.
-main :-
-  genterm 2 [] [] X,
-  simplify X Y,
-  print [X,Y],
-  fail.
-main.
+test In Out :-
+  N is 0 - 1,
+  In = mul (add (const 3) (mul (const N) (const 2))) X_,
+  simplify In Out.
