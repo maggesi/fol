@@ -1,0 +1,98 @@
+%%% ===========================================================================
+%%% Semantics for first order logic.
+%%% ===========================================================================
+
+%%% ---------------------------------------------------------------------------
+%%% Debug.
+%%% ---------------------------------------------------------------------------
+
+pred spy o:A.
+spy _.
+spy P :-
+  print "entering" P,
+  (P, print "success" P;
+   print "fail" P, fail).
+
+%%% ---------------------------------------------------------------------------
+%%% Arithmetic modulo 2.
+%%% ---------------------------------------------------------------------------
+
+pred domain o:int.
+domain 0.
+domain 1.
+
+pred add2 o:int, o:int, o:int.
+add2 0 0 0.
+add2 1 0 1.
+add2 0 1 1.
+add2 1 1 0.
+
+%%% ---------------------------------------------------------------------------
+%%% Terms.
+%%% ---------------------------------------------------------------------------
+
+kind term   type.
+type zero   term.
+type one    term.
+type add    term -> term -> term.
+
+%%% ---------------------------------------------------------------------------
+%%% Formulas.
+%%% ---------------------------------------------------------------------------
+
+kind form       type.
+type equ        term -> term -> form.
+type truth      form.
+type and, or    form -> form -> form.
+type neg        form -> form.
+type forall, exists (term -> form) -> form.
+
+%%% ---------------------------------------------------------------------------
+%%% Evaluation and validity.
+%%% ---------------------------------------------------------------------------
+
+pred termval i:term, o:int.
+termval zero 0.
+termval one 1.
+termval (add X Y) C :- termval X A, termval Y B, add2 A B C.
+
+pred ex i:(int -> prop).
+ex P :- domain X, P X.
+
+pred all i:(int -> prop).
+all P :- domain X, not(P X), !, fail; true.
+
+%%% ---------------------------------------------------------------------------
+%%% Interpretation.
+%%% ---------------------------------------------------------------------------
+
+pred holds i:form.
+holds truth.
+holds (equ X Y) :- termval X A, termval Y A.
+holds (and P Q) :- holds P, holds Q.
+holds (or P Q)  :- holds P; holds Q.
+holds (neg P)   :- not (holds P).
+holds (exists x \ P x) :- ex (predicate_holds P).
+holds (forall x \ P x) :- all (predicate_holds P).
+
+pred predicate_holds i:(term -> form), o:int.
+predicate_holds P N :- pi x \ termval x N => holds (P x).
+
+%%% ---------------------------------------------------------------------------
+%%% Tests.
+%%% ---------------------------------------------------------------------------
+
+pred test o:A, o:prop			.
+test X true :- holds X, !.
+test _ false.
+
+pred run o:form, o:prop.
+run (Q P) B :-
+  (P = (x \ equ x zero);
+   P = (x \ equ (add x one) x);
+   P = (x \ neg (equ x one));
+   P = (x \ neg (equ x x));
+   P = (x \ equ (add x x) zero);
+   P = (x \ equ (add x zero) x)),
+  (Q = exists; Q = forall),
+  X = Q P, test X B.
