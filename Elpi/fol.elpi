@@ -3,17 +3,6 @@
 %%% ===========================================================================
 
 %%% ---------------------------------------------------------------------------
-%%% Debug.
-%%% ---------------------------------------------------------------------------
-
-pred spy o:A.
-spy _.
-spy P :-
-  print "entering" P,
-  (P, print "success" P;
-   print "fail" P, fail).
-
-%%% ---------------------------------------------------------------------------
 %%% Arithmetic modulo 2.
 %%% ---------------------------------------------------------------------------
 
@@ -45,13 +34,14 @@ type equ        term -> term -> form.
 type truth      form.
 type and, or    form -> form -> form.
 type neg        form -> form.
-type forall, exists (term -> form) -> form.
+type forall,
+     exists     (term -> form) -> form.
 
 %%% ---------------------------------------------------------------------------
 %%% Evaluation and validity.
 %%% ---------------------------------------------------------------------------
 
-pred termval i:term, o:int.
+pred termval o:term, o:int.
 termval zero 0.
 termval one 1.
 termval (add X Y) C :- termval X A, termval Y B, add2 A B C.
@@ -66,7 +56,7 @@ all P :- domain X, not(P X), !, fail; true.
 %%% Interpretation.
 %%% ---------------------------------------------------------------------------
 
-pred holds i:form.
+pred holds o:form.
 holds truth.
 holds (equ X Y) :- termval X A, termval Y A.
 holds (and P Q) :- holds P, holds Q.
@@ -96,3 +86,18 @@ run (Q P) B :-
    P = (x \ equ (add x zero) x)),
   (Q = exists; Q = forall),
   X = Q P, test X B.
+
+pred test1.
+test1 :- holds (forall x \ equ (add x x) zero).
+
+pred test2.
+test2 :- holds (exists z\ forall x \ equ (add x z) x).
+
+pred test3.
+test3 :- holds (exists z\ forall x \ equ (add x z) zero).
+
+%%% La soluzione che mi aspetto e' A=zero.
+%%% (Ossia: zero e' l'unico elemento neutro dell'addizione.)
+%%% Invece e' A = X0.  Perche'?
+pred test4 o:term.
+test4 A :- holds (forall x\ equ (add x A) x).
